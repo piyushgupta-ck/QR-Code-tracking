@@ -1,0 +1,6 @@
+title,storeCode,location_id,address,city,state,postalCode,latitude,longitude,place_id,maps_url
+city kart agra,ABT,locations/4666737507424679186,"Bhagwan Talkies Crossing, Nagla Padi, New Agra Colony,, Near United Bank of India",Agra,Uttar Pradesh,282005,27.211453,78.0044254,,
+Citykart,BDN,locations/2160806110309379164,"SH 43, Jogipura, Near SBI Bank",Budaun,Uttar Pradesh,243601,28.032591,79.1255098,,
+Citykart Tezpur,TZP,locations/12392607470940595512,"NT Road, Kamarchuburi, Near Kanhaa - Sweets & Snacks",Sonitpur,Assam,784001,26.6259117,92.7895644,,
+CityKart Burari,NBR,locations/9709210340401200369,"Shri Ram Residency Tower, 100 Feet Rd, Conductor Colony, Burari, Opp. Gravis",New Delhi,Delhi,110084,28.7538498,77.1987803,,
+CityKart Paltan bazar Guwahati,GPB,locations/1161162771055990551,"1st Floor, Assam Trunk Road, Paltan Bazaar, Near State Transport Corporation",Guwahati,Assam,781008,26.1807637,91.7504425,,
