@@ -235,28 +235,45 @@ def _parse_ua(ua_string: str) -> tuple:
 
 
 # ---------------------------------------------------------------------------
-# Scan counter (reads sheet to determine next ID)
+# CSV logging — PRIMARY storage (always works, survives Sheets failures)
 # ---------------------------------------------------------------------------
-def _next_scan_id(ws) -> int:
-    try:
-        all_vals = ws.col_values(1)   # column A = ID
-        # all_vals[0] is the header "ID", so data starts at index 1
-        data_rows = [v for v in all_vals[1:] if v.strip().isdigit()]
-        return len(data_rows) + 1
-    except Exception:
+SCAN_LOG_FILE = "scan_logs.csv"
+LOG_FIELDS    = ["id", "timestamp", "store_code", "store_name",
+                 "ip", "city", "country", "device", "browser", "os", "user_agent"]
+
+
+def _next_scan_id_csv() -> int:
+    if not os.path.exists(SCAN_LOG_FILE):
         return 1
+    with open(SCAN_LOG_FILE, encoding="utf-8") as f:
+        rows = list(csv.DictReader(f))
+    return len(rows) + 1
+
+
+def _write_csv(row: dict):
+    file_exists = os.path.exists(SCAN_LOG_FILE)
+    with open(SCAN_LOG_FILE, "a", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=LOG_FIELDS)
+        if not file_exists:
+            writer.writeheader()
+        writer.writerow(row)
+
+
+def _read_csv() -> list:
+    if not os.path.exists(SCAN_LOG_FILE):
+        return []
+    with open(SCAN_LOG_FILE, encoding="utf-8") as f:
+        return list(csv.DictReader(f))
 
 
 # ---------------------------------------------------------------------------
-# Main scan logger — writes one row to Google Sheets
+# Main scan logger — writes to CSV always, tries Sheets as bonus
 # ---------------------------------------------------------------------------
 def _log_scan(store_code: str, store_name: str, ip: str, ua_string: str) -> dict:
     city, country            = _geo_from_ip(ip)
     device, browser, os_name = _parse_ua(ua_string)
     timestamp                = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
-
-    ws      = _get_worksheet()
-    scan_id = _next_scan_id(ws) if ws else "?"
+    scan_id                  = _next_scan_id_csv()
 
     row_data = {
         "id":         scan_id,
@@ -272,50 +289,30 @@ def _log_scan(store_code: str, store_name: str, ip: str, ua_string: str) -> dict
         "user_agent": ua_string[:200],
     }
 
+    # Always write to CSV first — this never fails
+    _write_csv(row_data)
+
+    # Try Google Sheets as a bonus — silent fail if not available
+    ws = _get_worksheet()
     if ws:
         try:
             ws.append_row(
-                [
-                    scan_id, timestamp, store_code, store_name,
-                    ip, city, country, device, browser, os_name, ua_string[:200]
-                ],
+                [scan_id, timestamp, store_code, store_name,
+                 ip, city, country, device, browser, os_name, ua_string[:200]],
                 value_input_option="RAW",
             )
         except Exception as e:
-            print(f"  ⚠  Failed to write to Sheets: {e}")
+            print(f"  ⚠  Sheets write failed (scan saved to CSV): {e}")
 
     return row_data
 
 
 # ---------------------------------------------------------------------------
-# Read all scans from Google Sheets (for API + dashboard)
+# Read all scans — CSV is primary, Sheets is fallback
 # ---------------------------------------------------------------------------
 def _read_all_scans() -> list:
-    ws = _get_worksheet()
-    if not ws:
-        return []
-    try:
-        records = ws.get_all_records()   # returns list of dicts using header row as keys
-        # Normalise keys to lowercase with underscores to match old API format
-        normalised = []
-        for r in records:
-            normalised.append({
-                "id":         str(r.get("ID", "")),
-                "timestamp":  r.get("Timestamp", ""),
-                "store_code": r.get("Store Code", ""),
-                "store_name": r.get("Store Name", ""),
-                "ip":         r.get("IP", ""),
-                "city":       r.get("City", ""),
-                "country":    r.get("Country", ""),
-                "device":     r.get("Device", ""),
-                "browser":    r.get("Browser", ""),
-                "os":         r.get("OS", ""),
-                "user_agent": r.get("User Agent", ""),
-            })
-        return normalised
-    except Exception as e:
-        print(f"  ⚠  Failed to read from Sheets: {e}")
-        return []
+    # Always read from CSV — it's always up to date
+    return _read_csv()
 
 
 # ---------------------------------------------------------------------------
