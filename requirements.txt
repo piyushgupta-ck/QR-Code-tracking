@@ -1,7 +1,0 @@
-flask
-flask-cors
-requests
-user-agents
-gspread
-google-auth
-google-auth-oauthlib
