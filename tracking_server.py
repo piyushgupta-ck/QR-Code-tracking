@@ -527,12 +527,14 @@ def dashboard():
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Citykart QR tracking server")
     parser.add_argument("--host",  default="0.0.0.0", help="Host to bind (default: 0.0.0.0)")
-    parser.add_argument("--port",  type=int, default=5000, help="Port (default: 5000)")
+    parser.add_argument("--port",  type=int,
+                        default=int(os.environ.get("PORT", 5000)),  # Railway sets $PORT
+                        help="Port (default: $PORT env var or 5000)")
     parser.add_argument("--debug", action="store_true", help="Enable Flask debug mode")
     args = parser.parse_args()
 
     print(f"\n🟣  Citykart QR Tracking Server")
-    print(f"    Logging to      : {'Google Sheets (' + SPREADSHEET_ID + ')' if SPREADSHEET_ID else 'DISABLED — set SPREADSHEET_ID'}")
+    print(f"    Logging to      : {'Google Sheets (' + SPREADSHEET_ID + ')' if SPREADSHEET_ID else 'CSV only'}")
     print(f"    Redirect route  : http://{args.host}:{args.port}/r/<STORE_CODE>")
     print(f"    Dashboard       : http://localhost:{args.port}/dashboard")
     print(f"\n    Press Ctrl+C to stop.\n")
