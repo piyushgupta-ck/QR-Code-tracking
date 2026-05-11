@@ -101,85 +101,78 @@ def _review_url(store_code: str) -> str:
 _worksheet     = None
 _sheets_failed = False   # once broken, stop retrying every request
 
-TOKEN_FILE = "token.json"
-
-# Create token.json from Railway environment variable
-if "TOKEN_JSON" in os.environ:
-    with open(TOKEN_FILE, "w") as f:
-        f.write(os.environ["TOKEN_JSON"])
 
 def _get_worksheet():
-    return None
     """
     Returns the gspread worksheet. Initialises once; returns None silently
     if token.json is missing or auth fails — CSV fallback takes over.
     """
-    # global _worksheet, _sheets_failed
+    global _worksheet, _sheets_failed
 
-    # if _worksheet is not None:
-    #     return _worksheet
-    # if _sheets_failed:
-    #     return None
+    if _worksheet is not None:
+        return _worksheet
+    if _sheets_failed:
+        return None
 
-    # if not SPREADSHEET_ID:
-    #     print("  ⚠  SPREADSHEET_ID not set — Sheets logging disabled.")
-    #     _sheets_failed = True
-    #     return None
+    if not SPREADSHEET_ID:
+        print("  ⚠  SPREADSHEET_ID not set — Sheets logging disabled.")
+        _sheets_failed = True
+        return None
 
-    # if not os.path.exists(TOKEN_FILE):
-    #     print(f"  ⚠  {TOKEN_FILE} not found — Sheets logging disabled.")
-    #     print("     Push token.json to the Railway repo to enable permanent scan storage.")
-    #     _sheets_failed = True
-    #     return None
+    if not os.path.exists(TOKEN_FILE):
+        print(f"  ⚠  {TOKEN_FILE} not found — Sheets logging disabled.")
+        print("     Push token.json to the Railway repo to enable permanent scan storage.")
+        _sheets_failed = True
+        return None
 
-    # try:
-    #     import gspread
-    #     from google.auth.transport.requests import Request
-    #     from google.oauth2.credentials import Credentials
+    try:
+        import gspread
+        from google.auth.transport.requests import Request
+        from google.oauth2.credentials import Credentials
 
-    #     creds = Credentials.from_authorized_user_file(TOKEN_FILE, SCOPES)
+        creds = Credentials.from_authorized_user_file(TOKEN_FILE, SCOPES)
 
-    #     if not creds.valid:
-    #         if creds.expired and creds.refresh_token:
-    #             creds.refresh(Request())
-    #             with open(TOKEN_FILE, "w") as f:
-    #                 f.write(creds.to_json())
-    #             print("  ✓  token.json refreshed")
-    #         else:
-    #             print("  ⚠  token.json invalid and cannot be refreshed — Sheets logging disabled.")
-    #             _sheets_failed = True
-    #             return None
+        if not creds.valid:
+            if creds.expired and creds.refresh_token:
+                creds.refresh(Request())
+                with open(TOKEN_FILE, "w") as f:
+                    f.write(creds.to_json())
+                print("  ✓  token.json refreshed")
+            else:
+                print("  ⚠  token.json invalid and cannot be refreshed — Sheets logging disabled.")
+                _sheets_failed = True
+                return None
 
-    #     client      = gspread.authorize(creds)
-    #     spreadsheet = client.open_by_key(SPREADSHEET_ID)
+        client      = gspread.authorize(creds)
+        spreadsheet = client.open_by_key(SPREADSHEET_ID)
 
-    #     try:
-    #         ws = spreadsheet.worksheet(SHEET_NAME)
-    #     except gspread.WorksheetNotFound:
-    #         ws = spreadsheet.add_worksheet(
-    #             title=SHEET_NAME, rows=100000, cols=len(SHEET_HEADERS)
-    #         )
-    #         ws.append_row(SHEET_HEADERS, value_input_option="RAW")
-    #         ws.format("A1:K1", {"textFormat": {"bold": True}})
-    #         spreadsheet.batch_update({"requests": [{
-    #             "updateSheetProperties": {
-    #                 "properties": {
-    #                     "sheetId": ws.id,
-    #                     "gridProperties": {"frozenRowCount": 1}
-    #                 },
-    #                 "fields": "gridProperties.frozenRowCount"
-    #             }
-    #         }]})
-    #         print(f"  ✓  Created '{SHEET_NAME}' tab in Google Sheet")
+        try:
+            ws = spreadsheet.worksheet(SHEET_NAME)
+        except gspread.WorksheetNotFound:
+            ws = spreadsheet.add_worksheet(
+                title=SHEET_NAME, rows=100000, cols=len(SHEET_HEADERS)
+            )
+            ws.append_row(SHEET_HEADERS, value_input_option="RAW")
+            ws.format("A1:K1", {"textFormat": {"bold": True}})
+            spreadsheet.batch_update({"requests": [{
+                "updateSheetProperties": {
+                    "properties": {
+                        "sheetId": ws.id,
+                        "gridProperties": {"frozenRowCount": 1}
+                    },
+                    "fields": "gridProperties.frozenRowCount"
+                }
+            }]})
+            print(f"  ✓  Created '{SHEET_NAME}' tab in Google Sheet")
 
-    #     _worksheet = ws
-    #     print(f"  ✓  Connected to Google Sheets: {spreadsheet.title}")
-    #     return ws
+        _worksheet = ws
+        print(f"  ✓  Connected to Google Sheets: {spreadsheet.title}")
+        return ws
 
-    # except Exception as e:
-    #     print(f"  ⚠  Google Sheets init failed: {e}")
-    #     _sheets_failed = True
-    #     return None
+    except Exception as e:
+        print(f"  ⚠  Google Sheets init failed: {e}")
+        _sheets_failed = True
+        return None
 
 
 def _next_scan_id() -> int:
