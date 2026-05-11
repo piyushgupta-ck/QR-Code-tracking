@@ -101,6 +101,12 @@ def _review_url(store_code: str) -> str:
 _worksheet     = None
 _sheets_failed = False   # once broken, stop retrying every request
 
+TOKEN_FILE = "token.json"
+
+# Create token.json from Railway environment variable
+if "TOKEN_JSON" in os.environ:
+    with open(TOKEN_FILE, "w") as f:
+        f.write(os.environ["TOKEN_JSON"])
 
 def _get_worksheet():
     """
