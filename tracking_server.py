@@ -141,19 +141,27 @@ def _geo_from_ip(ip: str) -> tuple:
 
 
 # ---------------------------------------------------------------------------
-# Device/browser detection
+# Device / browser detection
 # ---------------------------------------------------------------------------
 def _parse_ua(ua_string: str) -> tuple:
-    """Return (device_type, browser, os) from User-Agent string."""
+    """Return (device_type, browser, os, is_bot) from User-Agent string."""
     try:
         from user_agents import parse as ua_parse
         ua = ua_parse(ua_string)
         device  = "Mobile" if ua.is_mobile else ("Tablet" if ua.is_tablet else "Desktop")
         browser = ua.browser.family
         os_name = ua.os.family
-        return device, browser, os_name
+        is_bot  = getattr(ua, "is_bot", False)
+
+        # Catch hidden QR scanners / link preview bots
+        ua_lower = ua_string.lower()
+        bot_keywords = ["bot", "spider", "crawl", "preview", "whatsapp", "telegram", "facebookexternalhit", "headless"]
+        if any(b in ua_lower for b in bot_keywords):
+            is_bot = True
+
+        return device, browser, os_name, is_bot
     except Exception:
-        return "Unknown", "Unknown", "Unknown"
+        return "Unknown", "Unknown", "Unknown", False
 
 
 # ---------------------------------------------------------------------------
@@ -168,8 +176,12 @@ def _next_id() -> int:
 
 
 def _log_scan(store_code: str, store_name: str, ip: str, ua_string: str):
+    device, browser, os_name, is_bot = _parse_ua(ua_string)
+    
+    if is_bot:
+        return None  # Skip logging bots/pre-fetchers
+
     city, country      = _geo_from_ip(ip)
-    device, browser, os_name = _parse_ua(ua_string)
     scan_id            = _next_id()
     timestamp          = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
 
@@ -236,7 +248,10 @@ def qr_redirect(store_code):
 
     # Log the scan
     scan = _log_scan(code_upper, store["title"], ip, ua_string)
-    print(f"  SCAN #{scan['id']}  {code_upper}  {scan['city']}, {scan['country']}  [{scan['device']}]")
+    if scan:
+        print(f"  SCAN #{scan['id']}  {code_upper}  {scan['city']}, {scan['country']}  [{scan['device']}]")
+    else:
+        print(f"  [BOT IGNORED] Link preview/bot skipped for {code_upper}")
 
     # Redirect to Google review page
     review_url = _review_url(code_upper, store)
