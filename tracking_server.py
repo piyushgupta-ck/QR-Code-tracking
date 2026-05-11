@@ -1,24 +1,47 @@
 """
-tracking_server.py — QR scan tracking server for Citykart.
+tracking_server.py — QR scan tracking server with Google review redirect.
 
 When a customer scans a store's QR code, their phone hits:
     GET /r/<STORE_CODE>
 
 This server:
-  1. Logs the scan to a local CSV file
+  1. Logs: store_code, timestamp, IP address, city (from IP), device type, browser
   2. Redirects the customer to the Google review page for that store
 
-Dashboard:
-    GET /dashboard          → Browser dashboard (HTML, reads from CSV)
-    GET /api/scans          → JSON: all scan logs
-    GET /api/scans/<CODE>   → JSON: scans for one store
-    GET /api/summary        → JSON: per-store scan counts
+All scan data is saved to scan_logs.csv — open it in Excel or Google Sheets
+to analyse how many scans each store is getting and when.
 
 Requirements:
-    pip install flask flask-cors requests user-agents gunicorn
+    pip install flask flask-cors requests user-agents
+
+Deploy options:
+    A. Local / LAN only:
+       python tracking_server.py
+       # Access at http://localhost:5000  (or your LAN IP)
+
+    B. Free public hosting (Railway):
+       1. Push this file to a GitHub repo
+       2. Connect to Railway.app → Deploy → it auto-runs tracking_server.py
+       3. Copy the Railway URL → paste into generate_qr.py --base-url
+
+    C. Free public hosting (Render):
+       Same as Railway; add a Procfile with:  web: python tracking_server.py
+
+Usage:
+    python tracking_server.py
+    python tracking_server.py --port 8080
+    python tracking_server.py --host 0.0.0.0 --port 5000
+
+Dashboard:
+    GET /dashboard         → Browser dashboard (HTML)
+    GET /api/scans         → JSON: all scan logs
+    GET /api/scans/<CODE>  → JSON: scans for one store
+    GET /api/summary       → JSON: per-store scan counts
 """
 
+import argparse
 import csv
+import json
 import os
 import re
 from datetime import datetime, timezone
@@ -27,31 +50,46 @@ from flask import Flask, jsonify, redirect, render_template_string, request
 from flask_cors import CORS
 
 # ---------------------------------------------------------------------------
-# ── STORE MAP  (hardcoded) ─────────────────────────────────────────────────
-# ---------------------------------------------------------------------------
-# Format: "STORE_CODE": {"name": "...", "city": "...", "place_id": "..."}
-# place_id → direct Google write-review link (starts with ChIJ...)
-# Leave place_id as "" if unknown → falls back to Maps search URL
-# ---------------------------------------------------------------------------
-STORES = {
-    "ABT": {"name": "CityKart Agra",                   "city": "Agra",      "place_id": "ChIJ9cntFgB3dDkRV9_mckyVRVY"},
-    "BDN": {"name": "Citykart Budaun",                 "city": "Budaun",    "place_id": "ChIJQ9fzBwDpRDcR85mEZBiefhE"},
-    "TZP": {"name": "Citykart Tezpur",                 "city": "Sonitpur",  "place_id": "ChIJRzmi9VoZDTkRqUBB9PDXKy8"},
-    "NBR": {"name": "CityKart Burari",                 "city": "New Delhi", "place_id": ""},
-    "GPB": {"name": "CityKart Paltan Bazar Guwahati",  "city": "Guwahati",  "place_id": ""},
-    "LBL": {"name": "Citykart Balaganj Lucknow",       "city": "Lucknow",   "place_id": "ChIJ7QqULKD_mzkRUWjCuvMaLkE"},
-    "LBK": {"name": "Citykart Bakshi Ka Talab Lucknow","city": "Lucknow",   "place_id": "ChIJ979nEtpRmTkROsH9HMd9FBY"},
-    "LAM": {"name": "Citykart Alambagh Lucknow",       "city": "Lucknow",   "place_id": "ChIJUartaCT8mzkRl5ySY8Crr94"},
-    "LMP": {"name": "Citykart Mall Munsipulia",        "city": "Lucknow",   "place_id": "ChIJDba3kyjjmzkRt91EmZUbpzY"},
-    "LAD": {"name": "Citykart Adil Nagar Lucknow",     "city": "Lucknow",   "place_id": "ChIJA_fwXLhXmTkRizPFFE1CRos"},
-}
-
-# ---------------------------------------------------------------------------
-# ── CSV LOGGING ────────────────────────────────────────────────────────────
+# Config
 # ---------------------------------------------------------------------------
 SCAN_LOG_FILE = "scan_logs.csv"
-LOG_FIELDS    = ["id", "timestamp", "store_code", "store_name",
-                 "ip", "city", "country", "device", "browser", "os", "user_agent"]
+STORES_FILE   = "stores_detailed.csv"
+
+def _load_place_ids() -> dict:
+    """
+    Load Place IDs automatically — no manual entry needed.
+    Priority:
+      1. stores_detailed.csv  (has place_id column after running get_stores.py)
+      2. place_ids.json       (also written by get_stores.py as a quick-lookup file)
+    Falls back to empty dict — redirects still work via Maps search fallback.
+    """
+    # Try stores_detailed.csv first
+    try:
+        with open(STORES_FILE, encoding="utf-8") as f:
+            rows = list(csv.DictReader(f))
+        ids = {r["storeCode"]: r["place_id"] for r in rows if r.get("place_id")}
+        if ids:
+            return ids
+    except (FileNotFoundError, KeyError):
+        pass
+
+    # Fall back to place_ids.json
+    try:
+        with open("place_ids.json", encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        pass
+
+    return {}
+
+
+# Loaded once at startup
+PLACE_IDS = _load_place_ids()
+
+LOG_FIELDS = [
+    "id", "timestamp", "store_code", "store_name",
+    "ip", "city", "country", "device", "browser", "os", "user_agent",
+]
 
 # ---------------------------------------------------------------------------
 app = Flask(__name__)
@@ -59,51 +97,41 @@ CORS(app)
 
 
 # ---------------------------------------------------------------------------
+# Store loader
+# ---------------------------------------------------------------------------
+def _load_stores() -> dict:
+    stores = {}
+    try:
+        with open(STORES_FILE, encoding="utf-8") as f:
+            for row in csv.DictReader(f):
+                stores[row["storeCode"]] = row
+    except FileNotFoundError:
+        pass
+    return stores
+
+
+# ---------------------------------------------------------------------------
 # Review URL builder
 # ---------------------------------------------------------------------------
-def _review_url(store_code: str) -> str:
-    store = STORES.get(store_code, {})
-    if store.get("place_id"):
-        return f"https://search.google.com/local/writereview?placeid={store['place_id']}"
-    name  = store.get("name", "Citykart")
+def _review_url(store_code: str, store: dict) -> str:
+    if store_code in PLACE_IDS:
+        return f"https://search.google.com/local/writereview?placeid={PLACE_IDS[store_code]}"
+    name  = store.get("title", "Citykart")
     city  = store.get("city", "")
     query = f"{name} {city}".replace(" ", "+")
     return f"https://www.google.com/maps/search/?api=1&query={query}"
 
 
-def _next_scan_id() -> int:
-    """Get next scan ID from CSV row count."""
-    if not os.path.exists(SCAN_LOG_FILE):
-        return 1
-    with open(SCAN_LOG_FILE, encoding="utf-8") as f:
-        return sum(1 for _ in f)  # header + rows, close enough
-
-
-def _write_csv(row: dict):
-    file_exists = os.path.exists(SCAN_LOG_FILE)
-    with open(SCAN_LOG_FILE, "a", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=LOG_FIELDS)
-        if not file_exists:
-            writer.writeheader()
-        writer.writerow(row)
-
-
-def _read_all_scans() -> list:
-    if not os.path.exists(SCAN_LOG_FILE):
-        return []
-    with open(SCAN_LOG_FILE, encoding="utf-8") as f:
-        return list(csv.DictReader(f))
-
-
 # ---------------------------------------------------------------------------
-# IP → city lookup
+# IP → city lookup (free, no API key needed)
 # ---------------------------------------------------------------------------
 def _geo_from_ip(ip: str) -> tuple:
+    """Return (city, country) from IP using free ip-api.com service."""
     if ip in ("127.0.0.1", "::1", "localhost"):
         return "Local", "Local"
     try:
         import requests as req
-        r = req.get(f"https://ip-api.com/json/{ip}?fields=city,country", timeout=2)
+        r = req.get(f"http://ip-api.com/json/{ip}?fields=city,country", timeout=2)
         if r.status_code == 200:
             data = r.json()
             return data.get("city", "Unknown"), data.get("country", "Unknown")
@@ -113,56 +141,39 @@ def _geo_from_ip(ip: str) -> tuple:
 
 
 # ---------------------------------------------------------------------------
-# Device / browser detection (no external deps — pure regex)
+# Device/browser detection
 # ---------------------------------------------------------------------------
 def _parse_ua(ua_string: str) -> tuple:
-    ua = ua_string.lower()
-    # Device
-    if any(x in ua for x in ("android", "iphone", "ipod", "windows phone", "blackberry", "nokia")):
-        device = "Mobile"
-    elif any(x in ua for x in ("ipad", "tablet", "kindle", "playbook")):
-        device = "Tablet"
-    else:
-        device = "Desktop"
-    # Browser
-    if "edg" in ua:
-        browser = "Edge"
-    elif "opr" in ua or "opera" in ua:
-        browser = "Opera"
-    elif "chrome" in ua:
-        browser = "Chrome"
-    elif "firefox" in ua:
-        browser = "Firefox"
-    elif "safari" in ua:
-        browser = "Safari"
-    else:
-        browser = "Other"
-    # OS
-    if "android" in ua:
-        os_name = "Android"
-    elif "iphone" in ua or "ipad" in ua or "ipod" in ua:
-        os_name = "iOS"
-    elif "windows" in ua:
-        os_name = "Windows"
-    elif "mac" in ua:
-        os_name = "macOS"
-    elif "linux" in ua:
-        os_name = "Linux"
-    else:
-        os_name = "Other"
-    return device, browser, os_name
+    """Return (device_type, browser, os) from User-Agent string."""
+    try:
+        from user_agents import parse as ua_parse
+        ua = ua_parse(ua_string)
+        device  = "Mobile" if ua.is_mobile else ("Tablet" if ua.is_tablet else "Desktop")
+        browser = ua.browser.family
+        os_name = ua.os.family
+        return device, browser, os_name
+    except Exception:
+        return "Unknown", "Unknown", "Unknown"
 
 
 # ---------------------------------------------------------------------------
-# Main scan logger
+# Scan logger
 # ---------------------------------------------------------------------------
-def _log_scan(store_code: str, store_name: str, ip: str, ua_string: str) -> dict:
-    city, country            = _geo_from_ip(ip)
+def _next_id() -> int:
+    if not os.path.exists(SCAN_LOG_FILE):
+        return 1
+    with open(SCAN_LOG_FILE, encoding="utf-8") as f:
+        rows = list(csv.DictReader(f))
+    return len(rows) + 1
+
+
+def _log_scan(store_code: str, store_name: str, ip: str, ua_string: str):
+    city, country      = _geo_from_ip(ip)
     device, browser, os_name = _parse_ua(ua_string)
-    timestamp                = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
-    scan_id                  = _next_scan_id()
+    scan_id            = _next_id()
+    timestamp          = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
 
-    row_data = {
+    row = {
         "id":         scan_id,
         "timestamp":  timestamp,
         "store_code": store_code,
@@ -176,9 +187,14 @@ def _log_scan(store_code: str, store_name: str, ip: str, ua_string: str) -> dict
         "user_agent": ua_string[:200],
     }
 
-    _write_csv(row_data)
-    print(f"  ✓  Scan #{scan_id} saved to CSV — {store_code}  [{device}]")
-    return row_data
+    file_exists = os.path.exists(SCAN_LOG_FILE)
+    with open(SCAN_LOG_FILE, "a", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=LOG_FIELDS)
+        if not file_exists:
+            writer.writeheader()
+        writer.writerow(row)
+
+    return row
 
 
 # ---------------------------------------------------------------------------
@@ -187,40 +203,44 @@ def _log_scan(store_code: str, store_name: str, ip: str, ua_string: str) -> dict
 @app.route("/")
 def index():
     return jsonify({
-        "service":  "Citykart QR Tracking Server",
-        "status":   "running",
-        "storage":  "Local CSV",
-        "stores":   len(STORES),
+        "service": "Citykart QR Tracking Server",
+        "status":  "running",
         "routes": {
-            "/r/<store_code>":   "QR redirect — scans tracked here",
-            "/dashboard":        "Visual scan dashboard",
-            "/api/summary":      "JSON scan counts per store",
-            "/api/scans":        "JSON all scan logs",
-            "/api/scans/<code>": "JSON scans for one store",
+            "/r/<store_code>":    "QR redirect (scans tracked here)",
+            "/dashboard":         "Visual scan dashboard",
+            "/api/summary":       "JSON scan counts per store",
+            "/api/scans":         "JSON all scan logs",
+            "/api/scans/<code>":  "JSON scans for one store",
         },
     })
 
 
 @app.route("/r/<store_code>")
 def qr_redirect(store_code):
-    code  = store_code.upper()
-    store = STORES.get(code)
+    """
+    Main QR landing route. Logs the scan and redirects to Google review page.
+    """
+    stores     = _load_stores()
+    code_upper = store_code.upper()
+    store      = stores.get(code_upper)
 
     if not store:
-        # Unknown store code — redirect to generic Citykart search
+        # Unknown store code — redirect to generic Citykart Google search
         return redirect("https://www.google.com/search?q=Citykart+reviews", 302)
 
-    # Extract real client IP (Railway sits behind a reverse proxy)
-    ip = request.headers.get("X-Forwarded-For", request.remote_addr) or ""
-    if "," in ip:
-        ip = ip.split(",")[0].strip()
-
+    # Get client info
+    ip        = request.headers.get("X-Forwarded-For", request.remote_addr)
+    if ip and "," in ip:
+        ip = ip.split(",")[0].strip()   # first IP if behind proxy
     ua_string = request.headers.get("User-Agent", "")
 
-    scan = _log_scan(code, store["name"], ip, ua_string)
-    print(f"  SCAN #{scan['id']}  {code}  {scan['city']}, {scan['country']}  [{scan['device']}]")
+    # Log the scan
+    scan = _log_scan(code_upper, store["title"], ip, ua_string)
+    print(f"  SCAN #{scan['id']}  {code_upper}  {scan['city']}, {scan['country']}  [{scan['device']}]")
 
-    return redirect(_review_url(code), 302)
+    # Redirect to Google review page
+    review_url = _review_url(code_upper, store)
+    return redirect(review_url, 302)
 
 
 # ---------------------------------------------------------------------------
@@ -228,30 +248,41 @@ def qr_redirect(store_code):
 # ---------------------------------------------------------------------------
 @app.route("/api/summary")
 def api_summary():
-    # Seed all known stores with 0 scans
-    summary = {
-        code: {"name": s["name"], "city": s["city"], "scans": 0}
-        for code, s in STORES.items()
-    }
-    for row in _read_all_scans():
-        code = row.get("store_code", "")
-        if code in summary:
-            summary[code]["scans"] += 1
-        elif code:
-            summary[code] = {"name": row.get("store_name", code), "city": "", "scans": 1}
+    """Per-store scan counts."""
+    stores  = _load_stores()
+    summary = {code: {"name": s["title"], "city": s["city"], "scans": 0}
+               for code, s in stores.items()}
+
+    if os.path.exists(SCAN_LOG_FILE):
+        with open(SCAN_LOG_FILE, encoding="utf-8") as f:
+            for row in csv.DictReader(f):
+                code = row["store_code"]
+                if code in summary:
+                    summary[code]["scans"] += 1
+                else:
+                    summary[code] = {"name": row["store_name"], "city": "", "scans": 1}
 
     return jsonify(summary)
 
 
 @app.route("/api/scans")
 def api_scans_all():
-    return jsonify(_read_all_scans())
+    """All scan logs."""
+    if not os.path.exists(SCAN_LOG_FILE):
+        return jsonify([])
+    with open(SCAN_LOG_FILE, encoding="utf-8") as f:
+        rows = list(csv.DictReader(f))
+    return jsonify(rows)
 
 
 @app.route("/api/scans/<store_code>")
 def api_scans_store(store_code):
-    scans = [r for r in _read_all_scans() if r.get("store_code") == store_code.upper()]
-    return jsonify(scans)
+    """Scans for a specific store."""
+    if not os.path.exists(SCAN_LOG_FILE):
+        return jsonify([])
+    with open(SCAN_LOG_FILE, encoding="utf-8") as f:
+        rows = [r for r in csv.DictReader(f) if r["store_code"] == store_code.upper()]
+    return jsonify(rows)
 
 
 # ---------------------------------------------------------------------------
@@ -267,9 +298,9 @@ DASHBOARD_HTML = """
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Segoe UI', sans-serif; background: #f1f5f9; color: #1e293b; }
-  header { background: #7c3aed; color: white; padding: 20px 32px; }
+  header { background: #7c3aed; color: white; padding: 20px 32px; display: flex; align-items: center; gap: 16px; }
   header h1 { font-size: 22px; }
-  header p  { font-size: 13px; opacity: .8; margin-top: 4px; }
+  header p  { font-size: 13px; opacity: .8; }
   .container { max-width: 1100px; margin: 32px auto; padding: 0 20px; }
   .kpi-row   { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px; }
   .kpi       { background: white; border-radius: 12px; padding: 20px 24px; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
@@ -281,56 +312,50 @@ DASHBOARD_HTML = """
   td         { padding: 12px 16px; border-bottom: 1px solid #f1f5f9; font-size: 14px; }
   tr:last-child td { border-bottom: none; }
   tr:hover td      { background: #faf5ff; }
-  .badge   { display: inline-block; padding: 2px 8px; border-radius: 99px; font-size: 12px; font-weight: 600; }
-  .badge-m { background: #dbeafe; color: #1d4ed8; }
-  .badge-d { background: #f0fdf4; color: #166534; }
-  .badge-t { background: #fef9c3; color: #854d0e; }
-  h2       { font-size: 17px; font-weight: 600; margin-bottom: 12px; color: #374151; }
-  .refresh { float: right; font-size: 12px; color: #94a3b8; }
-  .storage-badge { display:inline-block; margin-bottom:20px; background:#fff; border:1px solid #e2e8f0;
-                   border-radius:8px; padding:10px 18px; font-size:13px; font-weight:600; }
-  .storage-warn { color: #92400e; border-color: #fde68a; background: #fffbeb; }
+  .badge     { display: inline-block; padding: 2px 8px; border-radius: 99px; font-size: 12px; font-weight: 600; }
+  .badge-m   { background: #dbeafe; color: #1d4ed8; }
+  .badge-d   { background: #f0fdf4; color: #166534; }
+  .badge-t   { background: #fef9c3; color: #854d0e; }
+  h2         { font-size: 17px; font-weight: 600; margin-bottom: 12px; color: #374151; }
+  .refresh   { float: right; font-size: 12px; color: #94a3b8; }
   @media (max-width: 640px) { .kpi-row { grid-template-columns: 1fr 1fr; } }
 </style>
 </head>
 <body>
 <header>
-  <h1>📸 Citykart — QR Scan Tracker</h1>
-  <p>Storage: Local CSV · auto-refreshes every 30 seconds</p>
+  <div>
+    <h1>📸 Citykart — QR Scan Tracker</h1>
+    <p>Live dashboard · auto-refreshes every 30 seconds</p>
+  </div>
 </header>
 <div class="container">
-  <div id="storage-info">
-    <span class="storage-badge storage-warn">
-      ⚠️ Data is stored locally and will be cleared when the server is restarted/redeployed.
-    </span>
-  </div>
   <div id="kpis" class="kpi-row"></div>
   <h2>Per-Store Scan Counts <span class="refresh" id="last-refresh"></span></h2>
-  <table>
+  <table id="store-table">
     <thead><tr><th>Store</th><th>City</th><th>Total Scans</th><th>Last Scan</th></tr></thead>
     <tbody id="store-body"></tbody>
   </table>
   <h2>Recent Scans (last 50)</h2>
-  <table>
-    <thead><tr><th>#</th><th>Time (UTC)</th><th>Store</th><th>City</th><th>Device</th><th>Browser</th><th>OS</th></tr></thead>
+  <table id="scan-table">
+    <thead><tr><th>#</th><th>Time</th><th>Store</th><th>City</th><th>Device</th><th>Browser</th><th>OS</th></tr></thead>
     <tbody id="scan-body"></tbody>
   </table>
 </div>
 <script>
 async function load() {
-  const [sumResp, scanResp, rootResp] = await Promise.all([
-    fetch('/api/summary'), fetch('/api/scans'), fetch('/')
+  const [sumResp, scanResp] = await Promise.all([
+    fetch('/api/summary'), fetch('/api/scans')
   ]);
   const summary = await sumResp.json();
   const scans   = await scanResp.json();
-  const root    = await rootResp.json();
 
-  const totalScans      = scans.length;
-  const storeCodes      = Object.keys(summary);
+  // KPIs
+  const totalScans  = scans.length;
+  const storeCodes  = Object.keys(summary);
   const storesWithScans = storeCodes.filter(c => summary[c].scans > 0).length;
-  const todayStr        = new Date().toISOString().slice(0, 10);
-  const todayScans      = scans.filter(s => s.timestamp && s.timestamp.startsWith(todayStr)).length;
-  const mobileScans     = scans.filter(s => s.device === 'Mobile').length;
+  const todayStr    = new Date().toISOString().slice(0,10);
+  const todayScans  = scans.filter(s => s.timestamp && s.timestamp.startsWith(todayStr)).length;
+  const mobileScans = scans.filter(s => s.device === 'Mobile').length;
 
   document.getElementById('kpis').innerHTML = `
     <div class="kpi"><div class="val">${totalScans}</div><div class="lbl">Total Scans</div></div>
@@ -339,11 +364,12 @@ async function load() {
     <div class="kpi"><div class="val">${totalScans ? Math.round(mobileScans/totalScans*100) : 0}%</div><div class="lbl">Mobile Scans</div></div>
   `;
 
+  // Per-store table
+  // find last scan per store
   const lastScan = {};
-  scans.forEach(s => { if (s.store_code) lastScan[s.store_code] = s.timestamp; });
+  scans.forEach(s => { lastScan[s.store_code] = s.timestamp; });
 
-  document.getElementById('store-body').innerHTML = storeCodes
-    .sort((a, b) => summary[b].scans - summary[a].scans)
+  const storeRows = storeCodes.sort((a,b) => (summary[b].scans - summary[a].scans))
     .map(code => `
       <tr>
         <td><b>${summary[code].name}</b> <small style="color:#94a3b8">(${code})</small></td>
@@ -351,26 +377,26 @@ async function load() {
         <td style="font-weight:700;color:#7c3aed">${summary[code].scans}</td>
         <td style="color:#64748b;font-size:13px">${lastScan[code] || '—'}</td>
       </tr>`).join('');
+  document.getElementById('store-body').innerHTML = storeRows;
 
+  // Recent scans
+  const recent = [...scans].reverse().slice(0, 50);
   const deviceBadge = d => {
-    if (d === 'Mobile')  return `<span class="badge badge-m">📱 Mobile</span>`;
-    if (d === 'Tablet')  return `<span class="badge badge-t">📲 Tablet</span>`;
+    if (d==='Mobile') return `<span class="badge badge-m">📱 Mobile</span>`;
+    if (d==='Tablet') return `<span class="badge badge-t">📲 Tablet</span>`;
     return `<span class="badge badge-d">💻 Desktop</span>`;
   };
-
-  const recent = [...scans].reverse().slice(0, 50);
-  document.getElementById('scan-body').innerHTML = recent.length
-    ? recent.map(s => `
-        <tr>
-          <td style="color:#94a3b8">#${s.id}</td>
-          <td style="font-size:13px">${s.timestamp}</td>
-          <td><b>${s.store_code}</b></td>
-          <td>${s.city || '—'}, ${s.country || ''}</td>
-          <td>${deviceBadge(s.device)}</td>
-          <td style="font-size:13px">${s.browser || '—'}</td>
-          <td style="font-size:13px">${s.os || '—'}</td>
-        </tr>`).join('')
-    : '<tr><td colspan="7" style="text-align:center;color:#94a3b8;padding:32px">No scans yet — share the QR codes!</td></tr>';
+  const scanRows = recent.map(s => `
+    <tr>
+      <td style="color:#94a3b8">#${s.id}</td>
+      <td style="font-size:13px">${s.timestamp}</td>
+      <td><b>${s.store_code}</b></td>
+      <td>${s.city || '—'}, ${s.country || ''}</td>
+      <td>${deviceBadge(s.device)}</td>
+      <td style="font-size:13px">${s.browser || '—'}</td>
+      <td style="font-size:13px">${s.os || '—'}</td>
+    </tr>`).join('');
+  document.getElementById('scan-body').innerHTML = scanRows || '<tr><td colspan="7" style="text-align:center;color:#94a3b8;padding:32px">No scans yet — share the QR codes!</td></tr>';
 
   document.getElementById('last-refresh').textContent = 'Updated ' + new Date().toLocaleTimeString();
 }
@@ -382,7 +408,6 @@ setInterval(load, 30000);
 </html>
 """
 
-
 @app.route("/dashboard")
 def dashboard():
     return render_template_string(DASHBOARD_HTML)
@@ -392,14 +417,16 @@ def dashboard():
 # Main
 # ---------------------------------------------------------------------------
 if __name__ == "__main__":
-    port  = int(os.environ.get("PORT", 5000))
-    debug = os.environ.get("FLASK_DEBUG", "0") == "1"
+    parser = argparse.ArgumentParser(description="Citykart QR tracking server")
+    parser.add_argument("--host", default="0.0.0.0", help="Host to bind (default: 0.0.0.0)")
+    parser.add_argument("--port", type=int, default=5000, help="Port (default: 5000)")
+    parser.add_argument("--debug", action="store_true", help="Enable Flask debug mode")
+    args = parser.parse_args()
 
     print(f"\n🟣  Citykart QR Tracking Server")
-    print(f"    Stores loaded   : {len(STORES)}")
-    print(f"    Storage         : {SCAN_LOG_FILE} (local, cleared on redeploy)")
-    print(f"    Redirect route  : http://0.0.0.0:{port}/r/<STORE_CODE>")
-    print(f"    Dashboard       : http://localhost:{port}/dashboard")
+    print(f"    Redirect route : http://{args.host}:{args.port}/r/<STORE_CODE>")
+    print(f"    Dashboard       : http://localhost:{args.port}/dashboard")
+    print(f"    Scan log file   : {SCAN_LOG_FILE}")
     print(f"\n    Press Ctrl+C to stop.\n")
 
-    app.run(host="0.0.0.0", port=port, debug=debug)
+    app.run(host=args.host, port=args.port, debug=args.debug)
