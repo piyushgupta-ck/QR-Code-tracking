@@ -1,4 +1,6 @@
 flask
 flask-cors
 requests
-gunicorn
+user-agents
+gspread
+google-auth
