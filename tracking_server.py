@@ -20,6 +20,7 @@ Requirements:
 
 import csv
 import os
+import re
 from datetime import datetime, timezone
 
 from flask import Flask, jsonify, redirect, render_template_string, request
@@ -112,18 +113,44 @@ def _geo_from_ip(ip: str) -> tuple:
 
 
 # ---------------------------------------------------------------------------
-# Device / browser detection
+# Device / browser detection (no external deps — pure regex)
 # ---------------------------------------------------------------------------
 def _parse_ua(ua_string: str) -> tuple:
-    try:
-        from user_agents import parse as ua_parse
-        ua      = ua_parse(ua_string)
-        device  = "Mobile" if ua.is_mobile else ("Tablet" if ua.is_tablet else "Desktop")
-        browser = ua.browser.family
-        os_name = ua.os.family
-        return device, browser, os_name
-    except Exception:
-        return "Unknown", "Unknown", "Unknown"
+    ua = ua_string.lower()
+    # Device
+    if any(x in ua for x in ("android", "iphone", "ipod", "windows phone", "blackberry", "nokia")):
+        device = "Mobile"
+    elif any(x in ua for x in ("ipad", "tablet", "kindle", "playbook")):
+        device = "Tablet"
+    else:
+        device = "Desktop"
+    # Browser
+    if "edg" in ua:
+        browser = "Edge"
+    elif "opr" in ua or "opera" in ua:
+        browser = "Opera"
+    elif "chrome" in ua:
+        browser = "Chrome"
+    elif "firefox" in ua:
+        browser = "Firefox"
+    elif "safari" in ua:
+        browser = "Safari"
+    else:
+        browser = "Other"
+    # OS
+    if "android" in ua:
+        os_name = "Android"
+    elif "iphone" in ua or "ipad" in ua or "ipod" in ua:
+        os_name = "iOS"
+    elif "windows" in ua:
+        os_name = "Windows"
+    elif "mac" in ua:
+        os_name = "macOS"
+    elif "linux" in ua:
+        os_name = "Linux"
+    else:
+        os_name = "Other"
+    return device, browser, os_name
 
 
 # ---------------------------------------------------------------------------
