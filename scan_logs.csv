@@ -1,0 +1,4 @@
+id,timestamp,store_code,store_name,ip,city,country,device,browser,os,user_agent
+1,2026-04-21 08:46:04 UTC,ABT,city kart agra,127.0.0.1,Local,Local,Desktop,Chrome,Windows,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"
+2,2026-04-21 08:46:52 UTC,ABT,city kart agra,127.0.0.1,Local,Local,Desktop,Chrome,Windows,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"
+3,2026-04-21 08:48:28 UTC,ABT,city kart agra,127.0.0.1,Local,Local,Desktop,Chrome,Windows,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"
