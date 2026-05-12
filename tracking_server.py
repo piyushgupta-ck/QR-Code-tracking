@@ -227,6 +227,12 @@ def index():
     })
 
 
+@app.route("/ping")
+def ping():
+    """Health check — keeps Railway server awake."""
+    return "ok", 200
+
+
 @app.route("/r/<store_code>")
 def qr_redirect(store_code):
     """
@@ -255,7 +261,32 @@ def qr_redirect(store_code):
 
     # Redirect to Google review page
     review_url = _review_url(code_upper, store)
-    return redirect(review_url, 302)
+
+    # Use meta-refresh + JS fallback so redirect works on all networks
+    # even if the HTTP 302 is blocked by some mobile ISPs
+    return f"""<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0;url={review_url}">
+  <title>Redirecting...</title>
+  <style>
+    body{{font-family:sans-serif;display:flex;flex-direction:column;
+         align-items:center;justify-content:center;height:100vh;margin:0;
+         background:#f8f9fc;color:#111827}}
+    .logo{{font-size:22px;font-weight:700;color:#b22222;margin-bottom:8px}}
+    .sub{{font-size:14px;color:#6b7280;margin-bottom:24px}}
+    a{{background:#4f46e5;color:white;padding:12px 28px;border-radius:8px;
+       text-decoration:none;font-size:15px;font-weight:600}}
+  </style>
+</head>
+<body>
+  <div class="logo">Citykart</div>
+  <div class="sub">Taking you to Google Reviews...</div>
+  <a href="{review_url}">Tap here to leave a review</a>
+  <script>window.location.replace("{review_url}");</script>
+</body>
+</html>""", 200
 
 
 # ---------------------------------------------------------------------------
@@ -431,14 +462,37 @@ def dashboard():
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
+def _keep_alive(public_url: str):
+    """Ping own /ping endpoint every 10 minutes to prevent Railway sleep."""
+    import time
+    import threading
+    def _pinger():
+        while True:
+            time.sleep(600)  # 10 minutes
+            try:
+                import requests as _req
+                _req.get(f"{public_url.rstrip('/')}/ping", timeout=5)
+            except Exception:
+                pass
+    t = threading.Thread(target=_pinger, daemon=True)
+    t.start()
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Citykart QR tracking server")
     parser.add_argument("--host", default="0.0.0.0", help="Host to bind (default: 0.0.0.0)")
     parser.add_argument("--port", type=int, default=5000, help="Port (default: 5000)")
     parser.add_argument("--debug", action="store_true", help="Enable Flask debug mode")
+    parser.add_argument("--public-url", default="", help="Public URL for keep-alive ping")
     args = parser.parse_args()
 
-    print(f"\n🟣  Citykart QR Tracking Server")
+    # Start keep-alive if public URL provided (e.g. Railway URL)
+    public_url = args.public_url or os.environ.get("RAILWAY_STATIC_URL", "")
+    if public_url:
+        _keep_alive(public_url)
+        print(f"    Keep-alive     : pinging {public_url}/ping every 10 min")
+
+    print(f"\n  Citykart QR Tracking Server")
     print(f"    Redirect route : http://{args.host}:{args.port}/r/<STORE_CODE>")
     print(f"    Dashboard       : http://localhost:{args.port}/dashboard")
     print(f"    Scan log file   : {SCAN_LOG_FILE}")
