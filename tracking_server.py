@@ -237,30 +237,51 @@ def ping():
     return "ok", 200
 
 
-@app.route("/upload-scans", methods=["GET", "POST"])
-def upload_scans():
-    """Upload scan_logs.csv to restore backup data."""
+@app.route("/upload", methods=["GET", "POST"])
+def upload_files():
+    """Upload data files to restore backup data."""
     if request.method == "GET":
         return """
-        <html><body style="font-family:sans-serif;padding:32px">
-        <h2>Upload scan_logs.csv</h2>
+        <html><body style="font-family:sans-serif;padding:32px;max-width:500px">
+        <h2>Upload Data Files</h2>
+        <p style="color:#6b7280">Upload stores_detailed.csv, place_ids.json or scan_logs.csv</p>
         <form method="post" enctype="multipart/form-data">
-            <input type="file" name="file" accept=".csv"><br><br>
-            <button type="submit">Upload</button>
+            <label><b>Select file:</b></label><br><br>
+            <input type="file" name="file"><br><br>
+            <select name="filename" style="padding:6px;width:100%;margin-bottom:12px">
+                <option value="stores_detailed.csv">stores_detailed.csv</option>
+                <option value="place_ids.json">place_ids.json</option>
+                <option value="scan_logs.csv">scan_logs.csv</option>
+            </select><br><br>
+            <button type="submit" style="background:#4f46e5;color:white;padding:10px 24px;
+                border:none;border-radius:6px;cursor:pointer;font-size:15px">Upload</button>
         </form>
         </body></html>
         """
     f = request.files.get("file")
+    filename = request.form.get("filename", "scan_logs.csv")
     if not f:
         return "No file uploaded", 400
-    f.save(SCAN_LOG_FILE)
-    # Count rows
+
+    # Only allow safe filenames
+    allowed = ["stores_detailed.csv", "place_ids.json", "scan_logs.csv"]
+    if filename not in allowed:
+        return "Invalid filename", 400
+
+    save_path = os.path.join(DATA_DIR, filename)
+    f.save(save_path)
+
     try:
-        with open(SCAN_LOG_FILE, encoding="utf-8") as fp:
-            rows = sum(1 for _ in fp) - 1
-        return f"✓ Uploaded successfully — {rows} scan records restored.", 200
+        size_kb = os.path.getsize(save_path) / 1024
+        return f"✓ {filename} uploaded successfully ({size_kb:.1f} KB) → saved to {save_path}", 200
     except Exception as e:
         return f"Upload failed: {e}", 500
+
+
+@app.route("/upload-scans", methods=["GET", "POST"])
+def upload_scans():
+    """Legacy endpoint — redirects to /upload"""
+    return redirect("/upload", 302)
 
 
 @app.route("/r/<store_code>")
