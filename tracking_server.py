@@ -1,3 +1,7 @@
+import os
+DATA_DIR = os.environ.get("DATA_DIR", os.path.join(os.path.dirname(os.path.abspath(__file__)), "data"))
+os.makedirs(DATA_DIR, exist_ok=True)
+
 """
 tracking_server.py — QR scan tracking server with Google review redirect.
 
@@ -52,8 +56,8 @@ from flask_cors import CORS
 # ---------------------------------------------------------------------------
 # Config
 # ---------------------------------------------------------------------------
-SCAN_LOG_FILE = "scan_logs.csv"
-STORES_FILE   = "stores_detailed.csv"
+SCAN_LOG_FILE = os.path.join(DATA_DIR, "scan_logs.csv")
+STORES_FILE   = os.path.join(DATA_DIR, "stores_detailed.csv")
 
 def _load_place_ids() -> dict:
     """
@@ -75,7 +79,7 @@ def _load_place_ids() -> dict:
 
     # Fall back to place_ids.json
     try:
-        with open("place_ids.json", encoding="utf-8") as f:
+        with open(os.path.join(DATA_DIR, "place_ids.json"), encoding="utf-8") as f:
             return json.load(f)
     except FileNotFoundError:
         pass
@@ -487,7 +491,10 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Start keep-alive if public URL provided (e.g. Railway URL)
-    public_url = args.public_url or os.environ.get("RAILWAY_STATIC_URL", "")
+    public_url = (args.public_url
+                  or os.environ.get("RAILWAY_PUBLIC_DOMAIN", "")
+                  or os.environ.get("RAILWAY_STATIC_URL", "")
+                  or "https://www.citykartqrtracking.in")
     if public_url:
         _keep_alive(public_url)
         print(f"    Keep-alive     : pinging {public_url}/ping every 10 min")
