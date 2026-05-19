@@ -237,6 +237,32 @@ def ping():
     return "ok", 200
 
 
+@app.route("/upload-scans", methods=["GET", "POST"])
+def upload_scans():
+    """Upload scan_logs.csv to restore backup data."""
+    if request.method == "GET":
+        return """
+        <html><body style="font-family:sans-serif;padding:32px">
+        <h2>Upload scan_logs.csv</h2>
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".csv"><br><br>
+            <button type="submit">Upload</button>
+        </form>
+        </body></html>
+        """
+    f = request.files.get("file")
+    if not f:
+        return "No file uploaded", 400
+    f.save(SCAN_LOG_FILE)
+    # Count rows
+    try:
+        with open(SCAN_LOG_FILE, encoding="utf-8") as fp:
+            rows = sum(1 for _ in fp) - 1
+        return f"✓ Uploaded successfully — {rows} scan records restored.", 200
+    except Exception as e:
+        return f"Upload failed: {e}", 500
+
+
 @app.route("/r/<store_code>")
 def qr_redirect(store_code):
     """
@@ -495,6 +521,7 @@ if __name__ == "__main__":
                   or os.environ.get("RAILWAY_PUBLIC_DOMAIN", "")
                   or os.environ.get("RAILWAY_STATIC_URL", "")
                   or "https://www.citykartqrtracking.in")
+
     if public_url:
         _keep_alive(public_url)
         print(f"    Keep-alive     : pinging {public_url}/ping every 10 min")
