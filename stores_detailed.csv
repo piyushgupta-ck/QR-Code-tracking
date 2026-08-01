@@ -1,0 +1,211 @@
+title,storeCode,location_id,address,city,state,postalCode,latitude,longitude,place_id,maps_url,status
+city kart agra,ABT,locations/4666737507424679186,"Bhagwan Talkies Crossing, Nagla Padi, New Agra Colony,, Near United Bank of India",Agra,Uttar Pradesh,282005,27.211453,78.0044254,ChIJ9cntFgB3dDkRV9_mckyVRVY,,CLOSED_PERMANENTLY
+Citykart,BDN,locations/2160806110309379164,"SH 43, Jogipura, Near SBI Bank",Budaun,Uttar Pradesh,243601,28.032591,79.1255098,ChIJ07IOnhZFdTkRpQfGPpevzEk,,CLOSED_PERMANENTLY
+Citykart Lakhenagar Raipur,RLN,locations/3963622129009739377,"Bridge Complex, Mahadev Ghat Main Road, Lakhenagar, Raipur",Raipur,Chhattisgarh,492001,21.2367967,81.6187014,ChIJmeHCo0DdKDoRtoZOM2CL1hU,,OPEN
+Citykart Jagdalpur,JGD,locations/17779110285834330936,"Aghanpur, Guru Govind Singh Ward, Bastar, Jagdalpur",Jabalpur,Chhattisgarh,494001,19.0920615,82.000701,ChIJ_cGGWQATMDoRrl_e6RE786k,,OPEN
+Citykart Tezpur,TZP,locations/12392607470940595512,"NT Road, Kamarchuburi, Near Kanhaa - Sweets & Snacks",Sonitpur,Assam,784001,26.6259117,92.7895644,ChIJibn-SgDpRDcRNSf4sVX5wWs,,CLOSED_PERMANENTLY
+Citykart Durg,DRG,locations/14233776583195514961,"Chandra Plaza, Station Road",Durg,Chhattisgarh,491001,21.1945785,81.2872953,ChIJz33_bsE9KToRsxTZYg5PzZg,,OPEN
+Citykart Balaganj Lucknow,LBL,locations/3954709386895680397,"No. 3 - 603/1, Hardoi Road, Balaganj, Opp. Jeevani Medical Store",Lucknow,Uttar Pradesh,226003,26.8731291,80.8824109,ChIJ7QqULKD_mzkRUWjCuvMaLkE,,OPEN
+Citykart Malihabad Lucknow,LMD,locations/9579528954753850655,Near Sbi Bank Mall Road Malihabad Chauraha Lucknow,Lucknow,Uttar Pradesh,226102,26.9272042,80.7115555,ChIJJbZMZ-WpnjkRXQQ1OKC64dI,,OPEN
+Citykart Bakshi ka Talab Lucknow,LBK,locations/3561648851735394523,"Sitapur Road, Bakshi Ka Talab ,Near Sbi Bank, Lucknow",Lucknow,Uttar Pradesh,227202,26.9925054,80.9198945,ChIJ979nEtpRmTkROsH9HMd9FBY,,OPEN
+Citykart Colonelganj Gonda,GCG,locations/16998098327707021590,"Ashirwad Bhawan, Near Sakrauha Chowraha, Lucknow-Gonda Road",Gonda,Uttar Pradesh,271502,27.1310186,81.6941998,ChIJpf2Gd2qRmTkRWp8yisAsV2I,,OPEN
+CityKart Burari,NBR,locations/9709210340401200369,"Shri Ram Residency Tower, 100 Feet Rd, Conductor Colony, Burari, Opp. Gravis",New Delhi,Delhi,110084,28.7538498,77.1987803,ChIJp90A-9H_DDkRhpsX8oE9knE,,CLOSED_PERMANENTLY
+Citykart Alambagh Lucknow,LAM,locations/11337291795033110711,"Kanpur Road, Alambagh, Near Ajanta Hospital",Lucknow,Uttar Pradesh,226005,26.8154682,80.9050657,ChIJUartaCT8mzkRl5ySY8Crr94,,OPEN
+Citykart Bilaspur Sipat Chowk,BSC,locations/3524276793761328360,"Sipat Chowk, Sarkanda, Bilaspur",Bilaspur,Chhattisgarh,495006,22.0956697,82.1451786,ChIJl7hFgqMLKDoRuCXagWuPOhw,,OPEN
+Citykart Mirganj,GPG,locations/4934831139697330726,"Mirganj Thana More, Marachhiya chowk, Gopalganj",MIrganj,Bihar,841438,26.3680794,84.3340279,ChIJcccOM1IBkzkRgup8fgTNOkA,,OPEN
+Citykart Sharda Chowk Jabalpur,JBP,locations/4985295262990673610,"Mcastro Fortune, Sharda Chowk, Nagpur Road, Jabalpur",Jabalpur,Madhya Pradesh,482001,23.1539414,79.9072732,ChIJL1ztXCCxgTkRP25gjMaZZ50,,OPEN
+Citykart Budgam,BDG,locations/16954679769204596713,"Meer Mall.near HDFC Bank, main Srinagar Budgam road",Budgam,Jammu and Kashmir,191111,34.0182981,74.7237204,ChIJ0UHwUsuR4TgR33yQCdr_ZwI,,OPEN
+Citykart Mall Munsipulia,LMP,locations/7015364434525584812,"Jama Masjid Road, Sector 12, Indira Nagar, Opposite HDFC Bank ATM",Lucknow,Uttar Pradesh,226016,26.885032,80.9965905,ChIJDba3kyjjmzkRt91EmZUbpzY,,OPEN
+Citykart Saidpur Ghazipur,GSD,locations/8172991173398050990,"Opposite Saidpur Block, Saidpur, Ghazipur",Ghazipur,Uttar Pradesh,233304,25.5414812,83.2275501,ChIJTZW4y27fkTkR2JrEgD53pBo,,OPEN
+Citykart Adil nagar Lucknow,LAD,locations/10360635036729991009,"Shopping Square, 163, Kursi Highway, Adil Nagar",Lucknow,Uttar Pradesh,226001,26.9083339,80.9561828,ChIJA_fwXLhXmTkRizPFFE1CRos,,OPEN
+CityKart Paltan bazar Guwahati,GPB,locations/1161162771055990551,"1st Floor, Assam Trunk Road, Paltan Bazaar, Near State Transport Corporation",Guwahati,Assam,781008,26.1807637,91.7504425,ChIJkSzwQSpbWjcRfXZK8sZ02PA,,CLOSED_PERMANENTLY
+Citykart Lakhisarai,LSR,locations/5204727484365904715,"Near Town Thana, Purani Bazaar, Mahavir Asthan, Lakhisarai",Lakhisarai,Bihar,811310,25.1769266,86.0954206,ChIJ-yncUicj8jkR4Jhs0v2cGvw,,OPEN
+Citykart,AMG,locations/3732318726044765758,"Raj Vihar, Ghosi, Near Durgawati Jewellers",Azamgarh,Uttar Pradesh,276001,26.0433821,83.1898512,ChIJGTPVtva9kTkR7WTIDanA78s,,OPEN
+CityKart Samastipur,SGT,locations/7285400168203514494,"Ghat Road, Magardahi",Samastipur,Bihar,848101,25.8646796,85.7843608,ChIJUZzOySmR7TkROz28AEMqVww,,OPEN
+Citykart Arrah pakri more,APM,locations/16726615866911487881,"Pakari Road, Chowk, Pakari, Near Firstcry.com",Arrah,Bihar,802301,25.5583959,84.6556527,ChIJrdZqSQBfjTkRplunMvgyBLg,,OPEN
+Citykart,PMT,locations/9819314755035034890,"Bari Path, Lalbagh, Opp. Sri Devi Asthan",Patna,Bihar,800004,25.6159647,85.1603631,ChIJ1fnesFRZ7TkRvU6K9492W_s,,OPEN
+Citykart,SHR,locations/7220472693029764933,"Hospital Road, Benusar Buzurg, Near Aditya Medical Hall",Siwan,Bihar,841227,26.2319993,84.3708665,ChIJSRv_EgD9kjkRZxBUmTmLJnw,,OPEN
+CityKart Gaya,GKG,locations/17487774382518592625,"Patna - Gaya Road, Murarpur, Near Petrol Pump",Gaya,Bihar,823001,24.8003601,85.0128129,ChIJox9jewAr8zkRDaGdRvBJ8To,,OPEN
+Citykart Rajajipuram Lucknow,LRP,locations/934661077809231093,"Shaheed Bhagat Singh Marg, Rajajipuram, Near Raju Srivastav Tiraha",Lucknow,Uttar Pradesh,226017,26.8407362,80.8768329,ChIJw5rSLMT_mzkR348QW-679V0,,OPEN
+Citykart Mainpuri,MNP,locations/9417408338729566900,"Hotel skyview, Bhawat chauraha, Infront of Police station",Mainpuri,Uttar Pradesh,205001,27.2194353,79.0391721,ChIJwbcOWq2XdTkRitE886m38pA,,OPEN
+Citykart Gorakhnath Road,GKT,locations/9014045423599224472,"Gorakhnath Bridge, North Humayunpur, Near Allahabad Bank",Gorakhpur,Uttar Pradesh,273015,26.765566,83.3578128,ChIJCzvcegBFkTkRnFPKP6NseDQ,,OPEN
+CityKart Arrah,ANM,locations/13391665095823942873,"No. 419/214-215/169, Rajendra Nagar, Nawada, Opposite SBI Branch",Bhojpur,Bihar,802301,25.5544391,84.6666393,ChIJF7qC3vdfjTkRxmlCB76ibrs,,OPEN
+Citykart Rafiganj Aurangabad,ARG,locations/13532998304095428905,"Dwarika Complex, Near Dak Bungalow Road, Rafiganj, Aurangabad",Aurangabad,Bihar,824125,24.8133585,84.6293595,ChIJc9oQy1MhjTkRcq9h4GhmiMM,,OPEN
+Citykart Banka,BNK,locations/12600020447145987864,"Bus Stand, Banka Central Mall, near Kotaria, Banka",Banka,Bihar,813102,24.8802022,86.9230346,ChIJPc28XeVV8DkRJ1ai1hRNQpY,,OPEN
+Citykart,PNA,locations/904302761529761652,"Roy Complex, Purnia - Siliguri Road, near Megashop, Navratan Hatta",Purnia,Bihar,854301,25.7798895,87.479082,ChIJD3N73nT57zkRnnwFDLWTTGY,,OPEN
+Citykart Bilasipara,BLP,locations/11330752598465084328,"No. 3, Dhanhati Nayapara Road, Ward No.3, Nayapara, Near Bilasipara Kali Bari",Bilasipara,Assam,783348,26.2310076,90.2312181,ChIJA2LyBABnWDcRZ5rSJlfLB2A,,OPEN
+Citykart Biraul Darbhanga,DBL,locations/15441391558233478132,"Pokhram - Biraul Road, Supaul Bazar, Near Bus Stand",Biraul,Bihar,847203,25.9450889,86.2439008,ChIJSZW426jGwwsRbcIkUGjjQ9A,,OPEN
+Citykart Jamalpur,JML,locations/9550494074023834737,"Mahatma Gandhi Road, Near Trends",Jamalpur,Bihar,811214,25.3210818,86.492718,ChIJkQGU_XXt8TkR-waoQJNTlVs,,OPEN
+Citykart Jandaha,JDV,locations/9753571714730122734,"ward no. 10, Amiya, Amia, Jandaha, Vaishali",Vaishali,Bihar,844505,25.7117577,85.5450999,ChIJQ401Hol57TkRAjcVYX-H-po,,OPEN
+Citykart Dehri,DHI,locations/2902450222523748145,"No. 1204, Old GT Road, Rajputana Mohalla",Dehri,Bihar,821307,24.9028307,84.180156,ChIJVU0oJrGvjTkRaOxmhP-634I,,OPEN
+CityKart Narkatiaganj,NKG,locations/371483213784794102,"No. 16, Main Road, Near Punjab National Bank",Narkatiaganj,Bihar,845455,27.1080479,84.4678834,ChIJc0WFCACdlDkRNLt3-SqYrBc,,OPEN
+Citykart Vrindavan Park Lucknow,LVP,locations/7787103841262658510,"No. 12, Raebareli Road, Haibat Mau Mawaiya, Near KFC",Lucknow,Uttar Pradesh,226014,26.7500226,80.9498346,ChIJSbrrxnD7mzkRJrOJawCh72s,,OPEN
+Citykart Susuwahi,VSW,locations/1872551687392212468,"Union Bank, Newada, Near Hotel Swarna",Varanasi,Uttar Pradesh,221011,25.2571712,82.9802962,ChIJ0bcHXgAzjjkRlIJeLrAUCD0,,OPEN
+Citykart,RGA,locations/7132707901936321027,"National Highway 127D, Gandhibari",Rangia,Assam,781354,26.4390557,91.6227004,ChIJTdcYtnWzWzcRrT2za9CKdCs,,OPEN
+Citykart,RBT,locations/1863603822161089711,Tagore Nagar,Robertsganj,Uttar Pradesh,231216,24.683854,83.0662942,ChIJMfE7hrT5jjkR02mX9rLHQSE,,OPEN
+Citykart Donar chowk Darbhanga,DDC,locations/8298849777454278267,"Sh 56, Donar, Near Mango Furniture",Darbhanga,Bihar,846004,26.1444149,85.9056753,ChIJCSgb_tu57TkRa6kojSK6-ds,,OPEN
+Citykart Jogbani,JGB,locations/10333988545235304845,"No. 699-704, Main Road",Jogbani,Bihar,854328,26.3997285,87.2635718,ChIJY22KiVR17zkRgFC64TbmiNE,,OPEN
+Citykart,GLA,locations/4829374144277874167,Sadar chauraha,Gola,Uttar Pradesh,262802,28.0776498,80.4716744,ChIJz2yxirRDnzkRR3VKwvn9pqk,,OPEN
+Citykart,RBL,locations/8338061301906382194,"Degree College Chauraha, Indira Nagar, Near Bharat Petroleum",Raebareli,Uttar Pradesh,229001,26.2169865,81.2455079,ChIJO9wwTDGhmzkR374DFoAOEjo,,OPEN
+CityKart,DBR,locations/17921149747940005826,"Talkie House Road, jhalukpora, Opp. Dibru Mobile",Dibrugarh,Assam,786001,27.4810654,94.9057816,ChIJETNVMheYQDcRNyT7yQSq7eE,,OPEN
+CityKart Naharlagun,NRL,locations/4628238245604534216,"Mountain View Restaurant, Main Road, Sector F, Near Lagun Bridge",Naharlagun,Arunachal Pradesh,791110,27.1019697,93.6913687,ChIJPcCfh2oBRDcRwmqL_wfYwHk,,OPEN
+Citykart Lalganj,VSH,locations/2312818807515598651,"Piprahia - Bhagwanpur Rd, Lalganj, Bihar",Vaishali,Bihar,844121,25.8664224,85.1813151,ChIJr5JLSQVF7TkR67bImQpCIFA,,OPEN
+Citykart,SLC,locations/11820650528706378344,"Premtalla Road, Ambicapatty, Opp. Big Bazar",Silchar,Assam,788001,24.8227967,92.7991858,ChIJj6ryvV1KTjcRAkvpe_Ixsq8,,OPEN
+Citykart Barh,BAH,locations/16291651366551982880,"No. 3, Station Road, Station Bazar, Near Vishwakarma Temple",Barh,Bihar,803213,25.4647803,85.7050159,ChIJ20lTdwB78jkR56rl25hsZ1k,,OPEN
+Citykart Shivpuri,SVP,locations/14586476405371029696,"Shri Jagdeesh Tower, Hospital Chouraha, Court Road Shivpuri",Shivpuri,Madhya Pradesh,473638,25.4258657,77.652934,ChIJWy5drne_cDkRyw1Lz5CzpRo,,OPEN
+Citykart Lakhenagar Raipur,RLN,locations/3963622129009739377,"Bridge Complex, Mahadev Ghat Main Road, Lakhenagar, Raipur",Raipur,Chhattisgarh,492001,21.2367967,81.6187014,ChIJmeHCo0DdKDoRtoZOM2CL1hU,,OPEN
+Citykart Jharsuguda,JHG,locations/6484713366564073836,"Hotel Mehgdoot Complex, Jharsuguda Town Main Road, Purani Basti, Beside Banka Jewellers",Jharsuguda,Odisha,768201,21.8615954,84.0199667,ChIJRdmDWNDlIDoRLKIEtT2hRxk,,OPEN
+Citykart Jagdalpur,JGD,locations/17779110285834330936,"Aghanpur, Guru Govind Singh Ward, Bastar, Jagdalpur",Jabalpur,Chhattisgarh,494001,19.0920615,82.000701,ChIJ_cGGWQATMDoRrl_e6RE786k,,OPEN
+Citykart Aurangabad OLD GT Road,ARN,locations/14509498430036928552,"No. 142/150/23, Old GT Road, Yamuna Nagar, Near SBI ATM",Aurangabad,Bihar,824101,24.7491598,84.3796462,ChIJkfI_uLP9jDkR7yKv9BHZA58,,OPEN
+Citykart Banmankhi Purnia,PBA,locations/348523435773123785,"Queens Court, Beside Indian Oil Petrol Pump, Bus Stand Road, Banmankhi, Purnia",Purnia,Bihar,854202,25.893756,87.194687,ChIJFeTYnGTD7zkRbBC7KT7RTt4,,OPEN
+Citykart,DPT,locations/1186867445634760719,"Danapur - Bankipur Road, Yadav Colony, Yadav Colony, Opposite Bharat Petroleum",Patna,Bihar,800011,25.6471016,85.087314,ChIJgwl5u2hX7TkR7hGMrr97UNI,,OPEN
+CityKart Ramnagar,VRN,locations/13528199371522460864,"Fort Road, Opp. Kashi Italy",Ramnagar,Uttar Pradesh,221008,25.2703441,83.0266184,ChIJZYSbfgAxjjkRd3YMrVG30GI,,OPEN
+Citykart Raniganj,RNG,locations/7910686186190730144,"Gokul Sweets, Bhargama mor, Near HDFC Bank Raniganj.",Araria,Bihar,854311,26.0849588,87.2347963,ChIJx0PjvmaV7zkRfq2MS88UHxI,,OPEN
+Citykart Katihar Mirchaibari chowk,KMC,locations/17097954727149256011,"NH 31, Mirchaibari, Opposite ICICI Bank",Katihar,Bihar,854105,25.556589,87.5567326,ChIJYW0aDfGr-jkRIox0s338Scg,,OPEN
+Citykart civil line Sultanpur,STN,locations/7860737105633604596,"Varanasi - Lucknow Road, Beside Galla Mandi",Sultanpur,Uttar Pradesh,228001,26.2649367,82.072344,ChIJQR1g86p9mjkRRaec95buCdY,,OPEN
+Citykart Agartala,AGT,locations/6056896429201299805,"1st Floor, Hari Ganga Basak Road, Melarmath, Dhaleswar",Agartala,Tripura,799001,23.8289584,91.2720105,ChIJB_Z1_rX1UzcRrglsuTMy62g,,OPEN
+Citykart,JGR,locations/11790746662713896970,"Gwalior Road, Loha Mandi, Near LIC HFL Office",Jhansi,Uttar Pradesh,284001,25.4556046,78.5662228,ChIJd15kfX93dzkRoT2JrW-3aYk,,OPEN
+Citykart paharpur Azamgarh,AZM,locations/7793304463681749369,"Plot No. 188, Takia, Paharpor Tehsil Sadar",Azamgarh,Uttar Pradesh,276001,26.0722191,83.1855541,ChIJs-G3yrijkTkRo1BhGD5GNe4,,OPEN
+Citykart Saharsa,SRA,locations/16968713888033510875,"No. 21, Dharamshala Road, Naya Bazar, Near ICICI Bank",Saharsa,Bihar,852201,25.8759498,86.5917489,ChIJwUsbLyY97jkReAYDPfwEWe0,,OPEN
+Citykart Udhampur,UBS,locations/16319559205576578194,"Om Mohani Kailu Complex, Near Bus Stand, Udhampur",Udhampur,Jammu and Kashmir,182101,32.9241503,75.1349089,ChIJFQ4JeAXTHTkR1q_MISKwCk8,,OPEN
+CityKart,BIA,locations/14672493451281971602,"No. 8, Shubham Tower, Chowk Station Road, Bahadurpur, Near Police Booth",Ballia,Uttar Pradesh,277001,25.758308,84.1492897,ChIJOfcN-d1kkjkRvV_2TeT6z2s,,OPEN
+Citykart Sultanpur District Hospital,STP,locations/17986949187195220863,"No. 228/2/5&6/3, Sultanpur Kurwar Civil Line, Opposite District Hospital",Sultanpur,Uttar Pradesh,228001,26.2629297,82.0701829,ChIJc5uiuXp9mjkR2H9vGYRnsDk,,OPEN
+Citykart Shrinagar Siwan,SSN,locations/11975970080950360055,"Izhar Complex, Opposite Canara Bank Near Kachari Station, Shrinagar, Siwan",Siwan,Bihar,841226,26.227067,84.3467707,ChIJvdTcfvD_kjkRq9RF_MvU-8o,,OPEN
+Citykart Begusarai,BGI,locations/15333541317175894647,"Kachahari Road, Sarvodaya Nagar, Near 1st Lady The Men's",Begusarai,Bihar,851101,25.4158991,86.1348631,ChIJE8ON4ykb8jkRCWmHVHn08Y0,,OPEN
+"Citykart Chetganj, Varanasi",VLP,locations/7656885962797830931,"C-19/115-116 Naseman, Lallapura Khurd,, Chetganj",Varanasi,Uttar Pradesh,221001,25.4812877,82.9750088,ChIJBfAPH18rjjkRBzlM2UYtsEw,,OPEN
+Citykart,BPT,locations/3465218073603013568,"Plot No: 85, LCN Road",Barpeta,Assam,781301,26.3277086,91.006773,ChIJoR7d7TedWTcRMkD-2NopjUc,,OPEN
+Citykart Balaganj Lucknow,LBL,locations/3954709386895680397,"No. 3 - 603/1, Hardoi Road, Balaganj, Opp. Jeevani Medical Store",Lucknow,Uttar Pradesh,226003,26.8731291,80.8824109,ChIJ7QqULKD_mzkRUWjCuvMaLkE,,OPEN
+Citykart Malihabad Lucknow,LMD,locations/9579528954753850655,Near Sbi Bank Mall Road Malihabad Chauraha Lucknow,Lucknow,Uttar Pradesh,226102,26.9272042,80.7115555,ChIJJbZMZ-WpnjkRXQQ1OKC64dI,,OPEN
+Citykart,NGZ,locations/2859398705904746508,"Doctor Shyam Prasad Mukh Marg, Ram Garhi, Lohia Nagar, Near Bhuvika Medicare",Ghaziabad,Uttar Pradesh,201003,28.6706725,77.4318716,ChIJYVrLBQDxDDkR9m7dUCKU5Ms,,OPEN
+Citykart Bilaspur,BAC,locations/2277428039004950174,"TR plaza, Ward no. 25, Kranti Kumar Bhartiya Nagar, Beside Star Children , Hospital, Agrasen Chowk, Magarpara Road, Bilaspur",Bilaspur,Chhattisgarh,495001,22.0770829,82.1504641,ChIJhcggt3oLKDoRwpCvqogX4xo,,OPEN
+Citykart Dhampur,DMB,locations/319333219363829830,Kalagarh road near Bharat Hero agency's dhampur Bijnor,Bijnor,Uttar Pradesh,246761,29.310235,78.5148436,ChIJ573Y5n7JCzkR0AsXQR1a4FM,,OPEN
+CityKart Anantnag,ANG,locations/15063642197178606798,"Narchoor Complex, Main Road, Janglat Mandi, Opp. District Hospital",Anantnag,Jammu and Kashmir,192101,33.7250667,75.1522099,ChIJRyhgWfMF4jgRPAaxCa1nsAw,,OPEN
+Citykart Muzaffarpur Aghoria Bazar,MPR,locations/15372086378086398890,"Om Tower, Amgola Road, Aghoria Bazar, Saadpur",Muzaffarpur,Bihar,842002,26.1089355,85.3891824,ChIJu73jXAIR7TkRpiQw_NQkSC8,,OPEN
+Citykart Purnia Subhash nagar,PNB,locations/8448017756157431271,"KUNWAR JEE BUSINESS COMPLEX, N.h 31, Subhash Nagar",Purnia,Bihar,854301,25.7642563,87.4696748,ChIJjULsZS_57zkRagdn9hhMAH0,,OPEN
+Citykart Matiyari Chouraha Lucknow,LMT,locations/15459100098678895417,"Siromani Square, Deva Road, Matiyari, Kamta, Near Maruti Suzuki",Lucknow,Uttar Pradesh,226010,26.8820685,81.0405362,ChIJV77iNprjmzkRqtPvqsNbQII,,OPEN
+CityKart Ghaziabad,GNM,locations/7856213231684703067,"Thapar Plaza, Grand Trunk Rd, Sector 5, Daulatpura, Opp. Santosh Sudarshan Hospital",Ghaziabad,Uttar Pradesh,201001,28.6488502,77.4428121,ChIJJaPbBiHxDDkRMRAGJp0OqDY,,OPEN
+Citykart Kacchi Dargah Patna,PKD,locations/17099626611806084595,"Alampur, Kacchi Dargah, Jethuli, Patna City",Patna,Bihar,803201,25.5469784,85.2773351,ChIJSbAg2_6f8jkRW9crdXORLbU,,OPEN
+CityKart,ALC,locations/1985251915844205486,"No. 18, Sardar Patel Marg, Civil Lines, Near CaratLane Jewellery",Prayagraj,Uttar Pradesh,211001,25.4569448,81.8352,ChIJk9Tug8LKmjkRLvgkFEb1QTw,,OPEN
+Citykart Etawah,ETW,locations/6090586465917906739,"No. 5, Rajshree Palace, Mall Godown Road, Chogurjee Nagar",Etawah,Uttar Pradesh,206001,26.7848888,79.0220419,ChIJVVlQHjHhdTkR2-WZsypQURg,,OPEN
+Citykart sulemsarai,SSR,locations/9483025698074883108,"No. 261&214, Grand Trunk Road, beside Temple, Sulem Sarai, Dhoomanganj",Prayagraj,Uttar Pradesh,211011,25.4477552,81.7865108,ChIJo8si343LmjkRGUIYVTWWX_s,,OPEN
+Citykart Bakshi ka Talab Lucknow,LBK,locations/3561648851735394523,"Sitapur Road, Bakshi Ka Talab ,Near Sbi Bank, Lucknow",Lucknow,Uttar Pradesh,227202,26.9925054,80.9198945,ChIJ979nEtpRmTkROsH9HMd9FBY,,OPEN
+Citykart,UNO,locations/8124563158871805325,"Narendra Nagar, Sharda Nahar, Beside Thakur Bindanarayanji Temple",Unnao,Uttar Pradesh,209801,26.5440151,80.4833524,ChIJV5wfeacVnDkRCMuBr05-bxE,,OPEN
+Citykart Colonelganj Gonda,GCG,locations/16998098327707021590,"Ashirwad Bhawan, Near Sakrauha Chowraha, Lucknow-Gonda Road",Gonda,Uttar Pradesh,271502,27.1310186,81.6941998,ChIJpf2Gd2qRmTkRWp8yisAsV2I,,OPEN
+Citykart samba,SBA,locations/8335537530024519414,"H477+HCR, near fun bytes, Sabzi Mandi","Samba, Palth",Jammu and Kashmir,184121,32.5639359,75.1134531,ChIJexZabgAjHDkRb5Up9unrD74,,OPEN
+CityKart Burari,NBR,locations/9709210340401200369,"Shri Ram Residency Tower, 100 Feet Rd, Conductor Colony, Burari, Opp. Gravis",New Delhi,Delhi,110084,28.7538498,77.1987803,ChIJp90A-9H_DDkRhpsX8oE9knE,,CLOSED_PERMANENTLY
+Citykart Hospital Road Motihari,MTR,locations/14000316105908594638,"Hospital Road, Chhatauni, Opp. Verma Telecom",Motihari,Bihar,845401,26.6487486,84.9299744,ChIJvWwL87w1kzkRqdiDWYBa1Ic,,OPEN
+Citykart Phulbani,PHB,locations/18025133178633853983,"State Highway 1, Amalpada, Opp. State Bank Of India ATM",Phulbani,Odisha,762001,20.4729262,84.2357694,ChIJPxPbDQCzIzoRfoeGyUU6qR8,,OPEN
+Citykart Hazaribagh,HZG,locations/1258151756160880332,"Hazaribagh - Bagodar Road, Hirabag, Beside HZB Tattoo & Mehandi Studio",Hazaribagh,Jharkhand,825301,23.997431,85.3737318,ChIJ-9pyGACd9DkRYh-MoXBrwC4,,OPEN
+Citykart Bahraich,BHR,locations/7217619903297940228,"Kumar City Mall, Kumar Talkies Road, Brahmnipura, Opp. Kanoongopura Police Station",Bahraich,Uttar Pradesh,271801,27.5715136,81.6026197,ChIJm9i-eEapmTkR3vGTn_SIdbQ,,OPEN
+Citykart Pharenda,PHR,locations/13637064643314671701,"No. 219, Raghunath Pur - Kashipur Rd, Ambedkar Chowk, Anand Nagar",Maharajganj,Uttar Pradesh,273155,27.1018532,83.2728711,ChIJOwZrhQK1ljkRf6tLV3SBhs8,,OPEN
+Citykart Nawada,NDA,locations/7181165142179644469,"Sebat Complex, Mirdah Toli, Dr. Sultan Ahmad Colony, Near Bus Depot",Nawada,Bihar,805110,24.8808046,85.543635,ChIJXXaSsrD_8jkRboWbW0ViVV4,,OPEN
+Citykart Padrauna,PDR,locations/16160903976810757449,"K SQUARE, Kasia - Padrauna Road, Vatika Colony, Opp. Jaiswal Mobile",Padrauna,Uttar Pradesh,274304,26.8962905,83.9785024,ChIJYTFJLuWNkzkRkV6R0_z9xsk,,OPEN
+Citykart Purvanchal Talkies Ballia,BPC,locations/13248162351560705421,"Near Purvanchal Cinema, NH-31, Bhrigu Ashram",Ballia,Uttar Pradesh,277001,25.7586143,84.1627378,ChIJ-RN3Ax1lkjkRaouzPm8v300,,OPEN
+Citykart Hospital Road Madhubani,MDB,locations/16101887218394773142,"Station Road, Near PNB Bank Madhubani",Madhubani,Bihar,847211,26.3478544,86.0725987,ChIJy5idHwDN7TkR_KZyvxYOhUE,,OPEN
+Citykart,ALK,locations/2351774952271411061,"Colonelganj, George Town, Opposite Swaraj Bhawan Museum",Prayagraj,Uttar Pradesh,211002,25.4594456,81.8592009,ChIJR-wSJgDLmjkR0H33bCz_Brk,,OPEN
+CityKart Mall,HPR,locations/9977830710850019391,"Uk Shukla Complex, Cinema Road, Yadav Chowk, Near SBI Bank",Hajipur,Bihar,844101,25.6951211,85.2128472,ChIJo4vUSTxc7TkRJY9Wx7nLvJM,,OPEN
+CityKart Khagaria,KRC,locations/12070739535033546664,"K. No. 156, P. No. 5, Gupta Market, Rajendra Chowk, Ram Bahadur Singh Bazar",Khagaria,Bihar,851204,25.5054318,86.4701579,ChIJX9iATHD78TkR5oVhugm-86I,,OPEN
+Citykart Medical college Road Jhansi,JHM,locations/5430159459046106147,"Kanpur - Jhansi Hwy, Bundelkhand University, Near HDFC Bank",Jhansi,Uttar Pradesh,284128,25.4568914,78.6126685,ChIJjQreDwB3dzkR_wc_che6QFI,,OPEN
+Citykart Khagaul Patna,PKM,locations/8951363741148478384,"Aparna Complex, Front of BMP-16, Phulwari Sharif, Patna",Patna,Bihar,801505,25.5778402,85.0567859,ChIJD9PXRUSp8jkR2nrYoHBkXfs,,OPEN
+Citykart Alambagh Lucknow,LAM,locations/11337291795033110711,"Kanpur Road, Alambagh, Near Ajanta Hospital",Lucknow,Uttar Pradesh,226005,26.8154682,80.9050657,ChIJUartaCT8mzkRl5ySY8Crr94,,OPEN
+Citykart Shopian,SPN,locations/4141502434191417214,"Kuchay Complex, College Road, Gagran, Near Turay Traders",Shopian,Jammu and Kashmir,192303,33.7131036,74.8358378,ChIJB32wZ3774TgRHfvmg7vUJ2I,,OPEN
+CityKart Aurangabad,ABD,locations/6754844327730050583,"No. 328, Mg Road, New Area, Ramesh Chauk, Ward No 11, Opp. Asian Paints",Aurangabad,Bihar,824101,24.7522203,84.3727223,ChIJ9YXtVWX9jDkRtElPwH0uOzo,,OPEN
+Citykart Kulgam,KDC,locations/1107954127572895356,"Near J&K Bank Opp. Court Road, Kulgam, Jammu & Kashmir",Kulgam,Jammu and Kashmir,192231,33.6471388,75.0144226,ChIJk7rpaTIB4jgRhnb2KjicFME,,OPEN
+Citykart Dwarka Mor,NDM,locations/15117594426663907577,"No. 751, Main Road, Uttam Nagar, Web India Process",Delhi,Delhi,110059,28.6203581,77.0398159,ChIJ1Q-_PNoFDTkRpi_HRDWb7kI,,OPEN
+Citykart,FBD,locations/876365093808858926,Hanumat Nagar,Faizabad,Uttar Pradesh,224001,26.7621186,82.1421267,ChIJPU2kQ3AHmjkRxjNTXJPDSi4,,OPEN
+Citykart Bilaspur Sipat Chowk,BSC,locations/3524276793761328360,"Sipat Chowk, Sarkanda, Bilaspur",Bilaspur,Chhattisgarh,495006,22.0956697,82.1451786,ChIJl7hFgqMLKDoRuCXagWuPOhw,,OPEN
+Citykart Siswan dhala Siwan,SWN,locations/16404227621735963442,"Station Road, Siswan Tola, Near Anabia Plaza",Siwan,Bihar,841239,26.2109538,84.363018,ChIJh1yGOaj7kjkR1jb0QrN7ajY,,OPEN
+Citykart,GRD,locations/12139742431266430026,"No. 729, New Jamua Road, New Barganda, Beside Bank of Baroda ATM",Giridih,Jharkhand,815301,24.1862977,86.3071411,ChIJkWT-bABV8TkR69bc3Eexf7s,,OPEN
+Citykart Simri Bakhtiyarpur Saharsa,SBP,locations/7532536129685593950,"Medni Complex, Block Chowk, Simri Bakhtiyarpur.",Saharsa,Bihar,852127,25.7225552,86.5876398,ChIJ53AtZJcj7jkRrN_6nncGZqg,,OPEN
+Citykart Mauranipur Jhansi,JMR,locations/8360164174808215826,"City Center, Garautha Chauraha, Mauranipur",Roni,Uttar Pradesh,284204,25.2584044,79.1445106,ChIJS67iwhYdeDkR4OuxMleNKlA,,OPEN
+Citykart Dumrao,DMR,locations/1607310005324843093,"101 Nimej Tola, Main Road Dumrao, Bihar",Buxar,Bihar,802119,25.5517235,84.1469384,ChIJZ4rMZdZ5kjkRAchy1vBSWc4,,OPEN
+Citykart Chappra,CPR,locations/6229689521649402809,"Saran Complex, Dak Bunglow Road, Saran, Sadhapur",Chapara,Bihar,841301,25.7800032,84.7397082,ChIJOxGehP27kjkR18WT2_pItDs,,OPEN
+Citykart Karond,BKR,locations/7900793467238899754,"No. 3, Govind Complex, Karond Bypass Road, Karond, Beside HDFC Bank",Bhopal,Madhya Pradesh,462038,23.3028522,77.4032662,ChIJYWLIhtRpfDkRrYA5ALgFXfI,,OPEN
+Citykart Gulmohar,BGM,locations/8766994663028226755,"Plot No. 188 situated on the land parcel, Babadian Kalan, Near national , Housing Board",Bhopal,Madhya Pradesh,462039,23.1929715,77.435611,ChIJNdVC-z5DfDkRqpme--f2JNw,,OPEN
+CityKart Sonepur,SNP,locations/155186534899391043,"No. 524, Biramitra Road, Near Central Bank of India",Sonepur,Odisha,767017,20.8444546,83.9097001,ChIJFVBuYgDnIzoRxZm4wHnskf8,,OPEN
+Citykart Mall,PKR,locations/9355457494830693084,"Kankarbagh Main Road, Sandalpur, Above MRF Tyres",Patna,Bihar,800026,25.6009585,85.1805326,ChIJR_n3IgBZ7TkR8ac46u8OZu4,,OPEN
+CityKart,PTS,locations/512204373544366312,"near phulwari sharif thana, golambar, Phulwari Sharif",Patna,Bihar,801505,25.5766042,85.0676507,ChIJCdVzlUep8jkR3JxFfnOUHFs,,OPEN
+Citykart Brijbihari Marg Muzaffarpur,MBR,locations/13747973336170926113,Brijbihari Marg Near Brahmpura Thana (Pasad Hospital),Muzaffarpur,Bihar,842003,26.6497725,84.9125562,ChIJMdA2AbY1kzkRRb6Ae9xBczE,,OPEN
+Citykart,KHR,locations/15302100155698778108,"Dr.Rajendar parsad road, Amla Tola Road, Mangal Bazar",Katihar,Bihar,854105,25.5443418,87.5686238,ChIJyXwfbfKp-jkRtXfwPHoSqtg,,OPEN
+Citykart Bhagwanpur Muzaffarpur,MBG,locations/10233808192525398370,"Rewa Road, Bishundatpur, Near Shiv Mandir",Muzaffarpur,Bihar,843113,26.1203654,85.3463783,ChIJg2GSt_YX7TkRTwI1BQNL51E,,OPEN
+Citykart Telibagh Lucknow,LTL,locations/10369793978242032392,"Raibareli Road, Telibagh, Near Big Fashion Bazar",Lucknow,Uttar Pradesh,226002,26.7806905,80.9425634,ChIJOcC-zYX7mzkR9gU-LjURRGw,,OPEN
+City Kart,DRA,locations/16359069745085604321,"Bhatwaliya Road, Bhatwaliya, Beside Police Station",Deoria,Uttar Pradesh,274001,26.4889099,83.7803156,ChIJdwhct0PFkzkRB7lWDR4PHI0,,OPEN
+Citykart,LPR,locations/14260597890826549461,"Mela Maidan Road, nearby Govind dairy, Khaprel Bazar",Lakhimpur,Uttar Pradesh,262701,27.9515309,80.777489,ChIJOd8Pkxo1nzkRN7AZjIfbd5o,,OPEN
+CityKart Jorhat,JRT,locations/16717648779880794456,"ABS Mall, Mariani Road, Gar Ali Market, Gar Ali",Jorhat,Assam,785001,26.7542593,94.218096,ChIJ6UsZdU_DRjcRCOe0tMot3KQ,,OPEN
+CityKart Madhubani,MMR,locations/18234231177881428934,"Ward No.8, Surat Ganj, Opposite SBI ATM",Madhubani,Bihar,847211,26.3478354,86.0722703,ChIJiQMYqa7N7TkR2Lsw1-m9aZ4,,OPEN
+Citykart Buxar,BAR,locations/6818056422742234185,"Ground & First Floor, Satyadevganj Main Road, Ramrekha Ghat, Near Bank Of India",Buxar,Bihar,802101,25.5735178,83.9742257,ChIJbwXi66d1kjkRRiE1ana9HqY,,OPEN
+Citykart Guwahati,GWT,locations/13338460562406504773,"Suncity Complex, Assam Trunk Road, Adabari, Opposite Bijarnia Hardware",Guwahati,Assam,781012,26.1579315,91.6822025,ChIJbTPbYxJbWjcR65FhgovyZLc,,OPEN
+Citykart,FGN,locations/5460447071177483927,"Ard No-4, Citykart stores Pvt Ltd, Old, Post Office Road, opp. Kali Mandir, near Axis Bank",Forbesganj,Bihar,854318,26.3078835,87.2594807,ChIJy0YvTSif7zkRi5i6opdXh1c,,OPEN
+City Kart,SPR2,locations/13435254347523248780,"Bahadurganj Road, Sadar Bazar, Beside Jai Mata Di Mandir",Shahjahanpur,Uttar Pradesh,242001,27.8844253,79.9137358,ChIJM8-Ugje9nzkRwzYjb1tYVfc,,OPEN
+CityKart Gorakhpur Barhalganj,GBG,locations/15615541427713976592,"College Road, Chillupar, Above HDFC Bank",Barhalganj,Uttar Pradesh,273402,26.2882542,83.5045164,ChIJh51KJAB_kTkRWbkeQFpvpPo,,OPEN
+Citykart Samastipur Laxmi cinema,NSM,locations/5203261343513274230,"No. 18, Nayanagar - Dudhpura Road, Gudari Bazar, Opposite Laxmi Talkies",Samastipur,Bihar,848101,25.8658296,85.7838146,ChIJ94YgLKKR7TkRrpF9ewr6C8E,,OPEN
+Citykart Mirganj,GPG,locations/4934831139697330726,"Mirganj Thana More, Marachhiya chowk, Gopalganj",MIrganj,Bihar,841438,26.3680794,84.3340279,ChIJcccOM1IBkzkRgup8fgTNOkA,,OPEN
+Citykart,MRP,locations/7183239466056103456,"No. 539/8, Govind Plaza, Badli Katra Road, Dankinganj",Mirzapur,Uttar Pradesh,231001,25.1445054,82.5705293,ChIJs_WALi3AjzkRPxfxmNsswoc,,OPEN
+CityKart,VRS,locations/13382095921644876562,"Fatman Road, Kashi Vidyapith, Chetganj, Opp. Max",Varanasi,Uttar Pradesh,221002,25.3187659,82.9908238,ChIJfaWH1OItjjkRdQ_7_Dq3b1s,,OPEN
+CityKart Barabanki,BRB,locations/13745903054250091409,"Shri Sai Plaza, Faizabad Road, Preet Vihar Colony, Civil Lines, Near Domino'S Pizza",Barabanki,Uttar Pradesh,225001,26.9238621,81.1780902,ChIJdbmEu8VhmTkRZ-KpMyqX_Ow,,OPEN
+Citykart Jamui,JMI,locations/13178906502100443325,"Ground Floor & 1st Floor, Government Bus Stand Road, Near Hotel JP Grand",Jamui,Bihar,811307,24.9323498,86.2279773,ChIJe2ddVwAr8jkRvHQ64HCl9Cw,,OPEN
+Citykart Udaipur,UDP,locations/14351530523476982363,"Plot No.-441, Bhagyam Business Centre, Hiran Magri, Sec-12, Udaipur",Udaipur,Rajasthan,313002,24.5465477,73.7078149,ChIJ7fyldhfvZzkRVDpD6K3deyk,,OPEN
+Citykart Kathhal nala pul Ballia,BLA,locations/11792021924159777282,"Lucknow Road, Baheri, Near Hajipur Road Bridge",Ballia,Uttar Pradesh,277001,25.7570773,84.1442082,ChIJuZD1QU5lkjkRJFX69zzqp9M,,OPEN
+Citykart Pilibhit,PLB,locations/18400591718945850503,"No. 409, Urmil Complex, Chatarichurahatankpur Rd, Ballabh Nagar Colony, Near Avadh School",Pilibhit,Uttar Pradesh,262001,28.6224229,79.8121175,ChIJS1FnLs8_oDkR8BjZRfxPqVk,,OPEN
+Citykart Mahnar bazar,MNR,locations/17167616477931076749,"Government hospital, Mahnar bazaar",Vaishali,Bihar,844506,25.614155,85.486576,ChIJ__c-WWx97TkR_dYsjbqpIEw,,OPEN
+CityKart,JCL,locations/8652114496619815704,"No. 239/1, Civil Lines, Rai Colony, Near ICICI Bank",Jhansi,Uttar Pradesh,284001,25.4440879,78.5769628,ChIJebCbZy93dzkRZ3gFI96sES0,,OPEN
+Citykart Rasal Chowk Jabalpur,JRC,locations/13008226064832623761,"Plot No.3/49-A, Civil Station, Kabir Marg, Napier Town, Swami Dayanand , Saraswati Ward, Adhartal, Jabalpur",Jabalpur,Madhya Pradesh,482002,23.1663583,79.9377669,ChIJ3-RZ4VOvgTkRawu6EzloWms,,OPEN
+Citykart Mughalsarai,MSR,locations/2823178725394365558,"GT Road, Subhash Nagar, Near Columbia Fitness",Mughalsarai,Uttar Pradesh,232101,25.2853514,83.1120511,ChIJ2ejW8KM7jjkRV5jKi4hgCrk,,OPEN
+Citykart Madhepura Manokalp heights,MDP,locations/11740782392485875394,"Saharsa Road, Beside Trends",Madhepura,Bihar,852113,25.9097449,86.7838299,ChIJPe0Wpyc37jkRHiioYcaduIg,,OPEN
+Citykart Balrampur,BRP,locations/1871104657589962143,"Tulsipur Road, Motisagar, Beside Punjab National Bank",Balrampur,Uttar Pradesh,271201,27.431701,82.1830368,ChIJFz50iknZmTkRkehJ2Geuz3Q,,OPEN
+CityKart Sheohar,SHO,locations/5159562654051919555,"NH 227, Zero Mile, Near Royal Enfield",Sheohar,Bihar,843329,26.5144683,85.3012376,ChIJ6aiHcQDn7DkR5_AoCQcn8uY,,OPEN
+Citykart Sharda Chowk Jabalpur,JBP,locations/4985295262990673610,"Mcastro Fortune, Sharda Chowk, Nagpur Road, Jabalpur",Jabalpur,Madhya Pradesh,482001,23.1539414,79.9072732,ChIJL1ztXCCxgTkRP25gjMaZZ50,,OPEN
+Citykart Sitamarhi,STM,locations/6379980243586944395,"No. 24, Station Road, Malahi, Near Hotel Payal",Sitamarhi,Bihar,843302,26.5941102,85.5016798,ChIJiYbBPvjx7DkROeXysLwGhyk,,OPEN
+Citykart Laheriasarai Darbhanga,DLS,locations/12015761895722979139,"Meena Aurum, Vip Main Road, Benta, Laheriasarai, Near Elite Petrol Pump",Darbhanga,Bihar,846001,26.1268761,85.9028383,ChIJgb157Vi47TkRWGrf2UU00vs,,OPEN
+Citykart Nautanwa,NTV,locations/2053402793375528707,"No. 9, Ghandhi Chowk Road, Nautanwa Bazar, Opp. Fancy Marbles and Tiles",Nautanwa,Uttar Pradesh,273164,27.4315809,83.4242786,ChIJIWknXCiYljkRQJBpnsyfvU8,,OPEN
+CityKart Rasra Ballia,BLR,locations/3581007232081921311,"Station Road, Hazir Bakhsh Nagar, Near Puspa Homiyo Chikitsalay",Rasra,Uttar Pradesh,221712,25.861362,83.8553938,ChIJd6CJKQAVkjkRsU_2Wk8AW2o,,OPEN
+Citykart,HRD,locations/16455231724332072976,"Ashirvad Complex, Dharamshala Road, Sader Bazar, Beside The Raymond Shop",Hardoi,Uttar Pradesh,241001,27.3938968,80.1313215,ChIJ4cdg2Mn5njkR8lHM-MUAUGs,,OPEN
+Citykart Madhepura,MCR,locations/885167834323589603,College Road Madhepura,Madhepura,Bihar,852112,26.0340801,87.0024407,ChIJezkUqwS37zkRuuBA-x1MxbY,,OPEN
+Citykart,RKT,locations/10659321683581831545,"NH 75, Hindalco Colony, Opposite Bus Stand",Renukoot,Uttar Pradesh,231217,24.2165822,83.0350235,ChIJi-DEtmzbjjkR6qUGEro6j4I,,OPEN
+Citykart Budgam,BDG,locations/16954679769204596713,"Meer Mall.near HDFC Bank, main Srinagar Budgam road",Budgam,Jammu and Kashmir,191111,34.0182981,74.7237204,ChIJ0UHwUsuR4TgR33yQCdr_ZwI,,OPEN
+Citykart Dildarnagar,DNG,locations/5387840167264922965,"Saraila Road, Above Bank of Baroda",Dildar Nagar,Uttar Pradesh,232326,25.4172267,83.6708714,ChIJ5XctGqb9jTkR0SrrynbcHrA,,OPEN
+Citykart Kanpur,KGN,locations/11678288614779925576,"No. 125/13/1-C, Parag Dairy Road, Chawla Market, Govind Nagar, Near Rachna Sarees",Kanpur,Uttar Pradesh,208006,26.4478589,80.3091249,ChIJ-dH-wxtHnDkRwdTmv-TQwUs,,OPEN
+Citykart Jhalwa,AJL,locations/13355838417511343245,"Ghunghru Chauraha, Devprayagam Colony, Jhalwa, Prayagraj, Dadanpur",Prayagraj,Uttar Pradesh,211012,25.4354551,81.7719968,ChIJwW8ABSDNmjkRp585a5comPY,,OPEN
+Citykart Balua chowk Motihari,MTH,locations/1383317232319849921,"Balua - Chandmari Road, Netajee Subhash Colony, Near Jagdamba Complex",Motihari,Bihar,845401,26.647295,84.9034566,ChIJk4Imv0g1kzkRGkpF-kLMsio,,OPEN
+Citykart Supaul,SPL,locations/12562120841400266558,"Durga Complex, Main Road, Near Gandhi Maidan",Supaul,Bihar,852131,26.1172175,86.5974062,ChIJP770avZD7jkRdWtOBsy9COI,,OPEN
+CityKart Bettiah,BTA,locations/17109852928576327581,"Supriya Cinema Road, Kamalnath Nagar, Opposite Old Lic Building",Bettiah,Bihar,855438,26.8053642,84.5146702,ChIJCUJLk3tvkzkRrfC8vwc7QpA,,OPEN
+Citykart Bihariganj Madhepura,MBI,locations/2017278468211423880,BBS Plaza near Bus stand,Madhepura,Bihar,852101,25.7309328,86.9871645,ChIJoSYZkBzR7zkRdI1y_fU4Emw,,OPEN
+Citykart,BRD,locations/14514036423909579144,"2H7W+JQQ, National Highway 927",Rupaidiha,Uttar Pradesh,271881,28.0141092,81.5969482,ChIJ2T3PKABfmDkROPPJbSmLPws,,OPEN
+Citykart Mahoba,MBA,locations/449453558319286147,"No. 301, Main Road, Makaniya Purva, Opp. UCO Bank",Mahoba,Uttar Pradesh,210427,25.2912192,79.883157,ChIJg9PqKBTNgjkR75lX1atevq4,,OPEN
+Citykart Mohania,MHN,locations/15712740723946507467,"No. 104, Mohania - Buxar Road, Beside Union Bank",Mohania,Bihar,821109,25.1657727,83.6247044,ChIJVzd8BgDhjTkRghUJsYgCz54,,OPEN
+Citykart Kharagpur,KGP,locations/10919545658775166563,"Lat Sahab Complex, Azimganj, Near Registry Office Haveli ,Kharagpur, Munger",Kharagpur,Bihar,811213,25.1212005,86.5497187,ChIJQcKbL2OX8TkR6gcES1rHHsg,,OPEN
+Citykart Mall Munsipulia,LMP,locations/7015364434525584812,"Jama Masjid Road, Sector 12, Indira Nagar, Opposite HDFC Bank ATM",Lucknow,Uttar Pradesh,226016,26.885032,80.9965905,ChIJDba3kyjjmzkRt91EmZUbpzY,,OPEN
+Citykart,GDA,locations/12124198831299328651,"Bankatwa, Bharatpuri, Beside Indian Oil",Gonda,Uttar Pradesh,271003,27.1397959,81.9658169,ChIJu7pxz7rvmTkR3aCMd0NSNAw,,OPEN
+Citykart,AMP,locations/215952294190052970,"No. 374, Ghadi Chowk, Ward Number 14, Beside Indusind Bank",Ambikapur,Chhattisgarh,497001,23.1274416,83.1905744,ChIJsUVj0SOjiTkRFpN65ycwnOQ,,OPEN
+CityKart Mokama,MKM,locations/11201511119369287738,"Mokama Market, Gaushala Road, Mokama",Patna,Bihar,803302,25.393403,85.9219794,ChIJazyuCwZt8jkRZ9r8DIRCFcg,,OPEN
+Citykart,SPR,locations/1080122235886632498,"Mor, Kachcha Katra More Road, near Syyed Petrol Pump",Shahjahanpur,Uttar Pradesh,242001,27.8697308,79.9072247,ChIJM6jrSNy9nzkRUiPHmlCX5O0,,OPEN
+Citykart Naini,NNI,locations/18326195532264688645,"No. 13/9, Mirzapur Road, Naini, Near Peter England",Prayagraj,Uttar Pradesh,211008,25.3917616,81.8637594,ChIJo2alYng1hTkReRjCkhQf2mA,,OPEN
+Citykart Jodhpur,JDP,locations/4817436288350508264,"7XGV+QHW, TV Tower Rd, Masuria Colony, Baldev Nagar, Jodhpur",Jodhpur,Rajasthan,342008,26.2770055,72.9939626,ChIJwxMdbSiNQTkRDNejYd8zD04,,OPEN
+Citykart,JPC,locations/6400394876036382638,Olandganj,Jaunpur,Uttar Pradesh,222002,25.7380109,82.67491,ChIJCfW-M-s7kDkRJj3sAcF0Tjw,,OPEN
+CityKart Ranchi,RBR,locations/16930906758318089703,"Bajra - Bariatu Road, Bariatu, Near Alam Hospital",Ranchi,Jharkhand,834009,23.3985271,85.3550817,ChIJ-0-0LQDj9DkRfm3kET71IqI,,OPEN
+CityKart Bhootnath Patna,PBM,locations/7079687785635902282,"Bhootnath Road, Bahadurpur Housing Colony, Chitragupta Nagar, Opp. SBI Bank",Patna,Bihar,800026,25.5988016,85.1751574,ChIJjzc4CiRZ7TkRk0mMEfPVPjY,,OPEN
+Citykart Goalpara,GLP,locations/5312448053233303605,"Goalpara - Guwahati Road, Geetanagar, Beside Life Care Hospital",Goalpara,Assam,783101,26.1616034,90.6218588,ChIJhReij_ezWTcRqV98MdwC9pI,,OPEN
+Citykart Siwan Babuniya more,SBM,locations/1963103383618648613,"Rajendra Path, Pal Nagar, Near TRENDS",Siwan,Bihar,841226,26.2220311,84.366644,ChIJv0YEgur9kjkRq3mFDiwTa5E,,OPEN
+CityKart Kapashera,KPH,locations/13840359901773684249,"Rao Uday Ram Complex, Old Delhi Gurgaon Road, Kapas Hera, Near SBI",West Delhi,Delhi,110037,28.5234061,77.0827348,ChIJPXhvNBUdDTkR0P7ydnmyTV4,,OPEN
+Citykart Dhaka Motihari,MDH,locations/15391123453420703522,"Alam Tower, Pakri dayal road, Azad chowk, Dhaka",Motihari,Bihar,845418,26.6726559,85.1631096,ChIJ8ZKMot_H7DkRbgHPqwztrK8,,OPEN
+Citykart Mundera Gorakhpur,GRK,locations/14242006648779658609,"No. 394&392, Medical College Road, Jungle Dhusan, Nera Ashwani Jewellers",Gorakhpur,Uttar Pradesh,273013,26.8195295,83.4026384,ChIJG67AYABFkTkRyBNK827Df6U,,OPEN
+Citykart Kishanganj,KPC,locations/12591436732863032897,"Loharpatti Road, Kochadhaman",Kishanganj,Bihar,855108,26.1050735,87.9522362,ChIJ5enMCgAX5TkRArkFs0zZV68,,OPEN
+Citykart (Vats City Complex),TGR,locations/15771751610702261668,"01, Teghra - Station Road, Daniyalpur",Teghra,Bihar,851133,25.496183,85.9412082,ChIJiSDEUzgN8jkR8By-viZQBTw,,OPEN
+"CityKart Mall, Jadhua",HJD,locations/8032031744174011958,"1st Floor, Mahnar Road, Jadhua",Hajipur,Bihar,844101,25.6723432,85.2354114,ChIJxxqbLQBf7TkRhMRxrpk6K2I,,OPEN
+Citykart Adil nagar Lucknow,LAD,locations/10360635036729991009,"Shopping Square, 163, Kursi Highway, Adil Nagar",Lucknow,Uttar Pradesh,226001,26.9083339,80.9561828,ChIJA_fwXLhXmTkRizPFFE1CRos,,OPEN
+Citykart Chhindwara,CNW,locations/14858026331791160487,"Radha Rani Complex, Sinchai Colony, Mohan Nagar, Near Narmada Diagnostic Clinic",Chhindwara,Madhya Pradesh,480001,22.0583673,78.9340161,ChIJuTiKFbBn1TsRbU9gWBd9B2U,,OPEN
+CityKart Muzzafarpur,MZM,locations/6909816956328138260,"Avdhesh Rai Complex, Akharaghat Road, New Zero Mile, Shekhpur",Muzaffarpur,Bihar,842002,26.1455703,85.3884373,ChIJ1YZiFwAR7TkRcChu2KVgMUw,,OPEN
+Citykart Sheikhpura,SKP,locations/15394855388216951213,"D.N. Plaza, VIP Road, Neha Machinery store",Sheikhpura,Bihar,811105,25.1343824,85.8399093,ChIJteafElBD8jkRfM4R5VkNnxw,,OPEN
+Citykart,DMK,locations/12206167130202295320,"No. 7, Om Shanti Tower, Thana Road, Near Sido Kahnu High School",Dumka,Jharkhand,814101,24.2653523,87.2486741,ChIJTZtGEwC38DkRs0Emyb9saEs,,OPEN
+Citykart Bazar Samiti,PBS,locations/4734531335137837937,"Bazaar Samiti Road, Bahadurpur, Beside Tanishk Banquet Hall",Patna,Bihar,800006,25.6060647,85.1725143,ChIJ2zVeDgBZ7TkRNwJOJgODxQA,,OPEN
+Citykart Dimapur,DMP,locations/1970896186627199106,"Patta No. 1256, Dag No. 1467, Dhobinala Road, Dimapur, Nagaland",Dimapur,Nagaland,797112,25.9073629,93.7213188,ChIJC8YORYzhRTcR9B5ISqZpJ7c,,OPEN
+Citykart,CTR,locations/17907358386787799610,"WH5M+7RJ, Naya Mohalla",Chhatarpur,Madhya Pradesh,471001,24.9076957,79.5832002,ChIJU8Tvi-2XgjkRT4VZ4KBFIzY,,OPEN
+Citykart Rewa,REW,locations/11427556606230907166,"Mahesh Tower, Near super Speciality Hospital Amahiya Road, Rewa",Rewa,Madhya Pradesh,486001,24.536467,81.2970961,ChIJ5c9GD1lbhDkRrX4v3cjYY_k,,OPEN
+Citykart Sitapur Road Lucknow,LTN,locations/9434391985011810692,"No. 538/002, Kanchan Mahal, Sitapur Road, Triveni Nagar Ward, Opp. Relief Hospital",Lucknow,Uttar Pradesh,226005,26.888942,80.9342876,ChIJP91DX_JXmTkRtggMTyVABH0,,OPEN
+Citykart,SMB,locations/2068835965383840799,"Budharaja Road, Budharaja, Beside Meher Ganesh Bastralaya",Sambalpur,Odisha,768004,21.4819377,83.9804248,ChIJy7QqgVcXIToRLPBmRbz_ekE,,OPEN
+CityKart Paltan bazar Guwahati,GPB,locations/1161162771055990551,"1st Floor, Assam Trunk Road, Paltan Bazaar, Near State Transport Corporation",Guwahati,Assam,781008,26.1807637,91.7504425,ChIJkSzwQSpbWjcRfXZK8sZ02PA,,CLOSED_PERMANENTLY
+CityKart Kendrapara,KDP,locations/380013733833065185,"Chandabali Road, Opp. Tripathy Book Store",Kendrapara,Odisha,754211,20.5156661,86.3969638,ChIJ75a0UgDbGzoRR2w6nBCzVI8,,OPEN
+Citykart,PNA,locations/14280117798451240189,"Roy Complex, Purnia - Siliguri Road, Navratan Hatta, Near Megashop",Purnia,Bihar,854302,25.7798895,87.479082,ChIJD3N73nT57zkRnnwFDLWTTGY,,OPEN
+Citykart Tinsukia,TNS,locations/11748085246221202874,"Rangagora Road, Durgabari, Beside Lenskart",Tinsukia,Assam,786125,27.4918795,95.3509246,ChIJYxytJQBrPzcRi_tEKm53gZQ,,OPEN
+Citykart Lakhisarai,LSR,locations/5204727484365904715,"Near Town Thana, Purani Bazaar, Mahavir Asthan, Lakhisarai",Lakhisarai,Bihar,811310,25.1769266,86.0954206,ChIJ-yncUicj8jkR4Jhs0v2cGvw,,OPEN
+Citykart Naugachhia,NGC,locations/14617001927539054869,"Market Road, Naugachhia, Near Maharaj Jee Hotel",Naugachhia,Bihar,853204,25.3875337,87.0980493,ChIJZ76B26078DkR5htUfaCeheo,,OPEN
