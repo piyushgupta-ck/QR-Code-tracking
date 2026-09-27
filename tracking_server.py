@@ -74,21 +74,37 @@ def _load_place_ids() -> dict:
         ids = {r["storeCode"]: r["place_id"] for r in rows if r.get("place_id")}
         if ids:
             return ids
-    except (FileNotFoundError, KeyError):
-        pass
+    except (FileNotFoundError, KeyError, csv.Error, UnicodeDecodeError) as e:
+        print(f"[PlaceIDs] Could not read {STORES_FILE} ({e}) -- trying place_ids.json")
 
     # Fall back to place_ids.json
+    _place_ids_path = os.path.join(DATA_DIR, "place_ids.json")
     try:
-        with open(os.path.join(DATA_DIR, "place_ids.json"), encoding="utf-8") as f:
+        with open(_place_ids_path, encoding="utf-8") as f:
             return json.load(f)
     except FileNotFoundError:
         pass
+    except (json.JSONDecodeError, UnicodeDecodeError) as e:
+        # A corrupted/empty/partially-written file must never crash the whole
+        # server at import time -- this is the exact crash that took the QR
+        # redirect service down (place_ids.json on the volume was 0 bytes).
+        # Degrade to the documented empty-dict fallback (redirects still work
+        # via the Maps search fallback) instead of boot-crash-looping;
+        # re-upload a valid place_ids.json via /upload to restore it.
+        print(f"[PlaceIDs] {_place_ids_path} is corrupted/empty ({e}) -- "
+              f"falling back to empty dict. Re-upload a valid place_ids.json via /upload.")
 
     return {}
 
 
-# Loaded once at startup
-PLACE_IDS = _load_place_ids()
+# Loaded once at startup. Never let a bad data file prevent the process from
+# booting at all -- an empty PLACE_IDS still serves QR redirects via the Maps
+# search fallback, which is far better than the whole server being down.
+try:
+    PLACE_IDS = _load_place_ids()
+except Exception as e:
+    print(f"[PlaceIDs] Unexpected error building PLACE_IDS ({e}) -- starting with an empty dict.")
+    PLACE_IDS = {}
 
 LOG_FIELDS = [
     "id", "timestamp", "store_code", "store_name",
@@ -181,7 +197,7 @@ def _next_id() -> int:
 
 def _log_scan(store_code: str, store_name: str, ip: str, ua_string: str):
     device, browser, os_name, is_bot = _parse_ua(ua_string)
-    
+
     if is_bot:
         return None  # Skip logging bots/pre-fetchers
 
